@@ -5,10 +5,11 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
-const apiRoutes = require('./app_api/routes/book.routes');
 const port = process.env.PORT || 3001;
 const MONGODB_URI = "mongodb://admin:rootroot1@ds143511.mlab.com:43511/heroku_0vst7z49" || 'mongodb://localhost/googlebooks';
 const app = express();
+const apiRoutes = require('./app_api/routes/book.routes');
+const googlebooksRoutes = require("./app_api/routes/googlebooks.routes");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,5 +27,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
     .catch(err => console.error(err));
 
 app.use('/api', apiRoutes);
+app.use('/', googlebooksRoutes);
 
 app.listen(port, () => console.log(`App running on port ${port}`));
