@@ -11,7 +11,7 @@
 
 
 <script>
-import Card from "../components/Card"
+import Card from "../components/Card/Card"
 
 export default {
     name: "Home",

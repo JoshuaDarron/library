@@ -1,30 +1,50 @@
-const db = require('../models');
+const db = require('../models')
 
 module.exports = {
 
     createBook: (req, res) => {
-        console.log(req.body)
         db
             .Book
             .create(req.body)
-            .then(resBook => res.json(resBook))
-            .catch(err => console.error(err));
+            .then(resBook => res.status(201).json(resBook))
+            .catch(err => console.error(err))
     },
 
+
     findAllBooks: (req, res) => {
-        db
-            .Book
-            .find({})
-            .then(resBook => res.json(resBook))
-            .catch(err => console.error(err));
+        const book = db.Book.find({})
+        const currentPage = +req.query.page
+
+        if (currentPage) {
+            book
+                .skip(6 * (currentPage - 1))
+                .limit(6)
+        }
+
+        book
+            .then(resBook => {
+                fetchedBooks = resBook
+                return db.Book.countDocuments()
+            })
+            .then(count => res.status(200).json({
+                message: 'Books fetched successfully!',
+                books: fetchedBooks,
+                maxCount: count
+            }))
+            .catch(err => {
+                res.status(500).json({
+                    message: 'Fetching books failed'
+                })
+            })
     },
+
 
     findOneBook: (req, res) => {
         db
             .Book
             .findOne({ _id: req.params.id })
             .then(resBook => res.json(resBook))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
     },
 
     updateBook: (req, res) => {
@@ -32,7 +52,7 @@ module.exports = {
             { _id: req.params.id },
             req.body)
             .then(resBook => res.json(resBook))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
     },
 
     deleteBook: (req, res) => {
@@ -41,6 +61,6 @@ module.exports = {
             .Book
             .remove({ _id: req.params.id })
             .then(resBook => res.json({_id: req.params.id, message: "Deletion successfull."}))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
     }
-};
+}

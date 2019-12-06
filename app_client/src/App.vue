@@ -7,7 +7,7 @@
 					menu
 				</i>
 			</a>
-		</div>		
+		</div>
 	</nav>
 	<div class="container">
 		<div class="row">
@@ -33,6 +33,16 @@
 					<li>
 						<div class="divider"></div>
 					</li>
+						<router-link to="/">
+							<li>
+								<a class="waves-effect" href="#">
+									<i class="material-icons">
+										home
+									</i>
+									Home
+								</a>
+							</li>
+						</router-link>
 					<router-link to="/archive">
 						<li>
 							<a class="waves-effect"  href="#">
@@ -53,16 +63,6 @@
 							</a>
 						</li>
 					</router-link>
-					<router-link to="/sharred">
-						<li>
-							<a class="waves-effect" href="#">
-								<i class="material-icons">
-									share
-								</i>
-								Sharred
-							</a>
-						</li>
-					</router-link>
 					<router-link to="/bin">
 						<li>
 							<a class="waves-effect" href="#">
@@ -79,7 +79,7 @@
 						</a>
 					</li>
 				</ul>
-			</div> 
+			</div>
 			<div class="col s12 m8 l9 xl10">
 				<div class="row">
 					<router-view/>
@@ -96,18 +96,18 @@ import 'materialize-css/dist/css/materialize.css'
 
 export default {
 	name: 'App',
-    mounted() {
-        M.AutoInit();
-    }
+	mounted() {
+		M.AutoInit();
+	}
 }
 </script>
 
 <style>
 .nav-wrapper {
-    background-color: #42a5f5;
+	background-color: #42a5f5;
 }
 
 .header-font {
-    color: #42a5f5;
+	color: #42a5f5;
 }
 </style>

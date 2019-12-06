@@ -4,8 +4,10 @@ module.exports = {
     findGooglebooks: (req, res) => {
         const query = req.body.query;
         books.search(query, (err, bookRes) => {
-            if (!err) res.send(bookRes);
-            else res.error(err);
+            if (!err) res.status(200).json(bookRes);
+            res.status(500).json({
+                err
+            });
         });
     }
 };

@@ -1,14 +1,19 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
+
 
 const BookSchema = new Schema({
 	authors: [String],
 	description: String,
 	image: String,
 	link: String,
-	title: String
-});
+	title: String,
+	isSaved: Boolean,
+	isDeleted: Boolean,
+	isBookmarked: Boolean
+})
 
-const Book = mongoose.model("Book", BookSchema);
 
-module.exports = Book;
+const Book = mongoose.model("Book", BookSchema)
+
+module.exports = Book

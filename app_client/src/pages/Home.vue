@@ -1,11 +1,8 @@
 <template>
 <div>
     <h1 class="header header-font">
-        Bin
+        Home
     </h1>
-    <div class="divider"></div>
-    <Card
-        v-bind:books="books" />
 </div>
 </template>
 
@@ -16,7 +13,7 @@ import Card from "../components/Card/Card";
 import api from "../helpers/API";
 
 export default {
-    name: "Bin",
+    name: "Home",
     components: {
         Card
     },
