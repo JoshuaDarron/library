@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const BookSchema = new Schema({
 	authors: [String],
 	description: String,
-	image: String,
+	thumbnail: String,
 	link: String,
 	title: String,
 	isSaved: Boolean,

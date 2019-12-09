@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Search from '@/pages/Search'
-import Archive from '@/pages/Archive'
-import Bookmarks from '@/pages/Bookmarks'
+import Search from '@/pages/Search/Search'
 import Home from '@/pages/Home'
-import Bin from '@/pages/Bin'
+import Archive from '@/pages/Archive/Archive'
+import Bookmarks from '@/pages/Bookmarks/Bookmarks'
+import Bin from '@/pages/Bin/Bin'
 
 Vue.use(Router)
 

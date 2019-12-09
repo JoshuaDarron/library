@@ -1,21 +1,9 @@
-hr {
-    border: .5px solid #bbdefb;
+.title {
+    font-size: 19px;
 }
-.card-panel {
-    margin: 15px 0;
-}
-.card-link {
-    color: black;
-    text-decoration: none;
-}
-.card-text {
-    font-size: 20px;
-}
-.card-link:hover {
-    text-decoration: none;
-}
-.book-title {
-font-size: 17px;
+
+.authors {
+    margin-top: 15px !important;
 }
 
 .fadeout {

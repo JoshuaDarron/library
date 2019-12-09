@@ -17,8 +17,8 @@ module.exports = {
 
         if (currentPage) {
             book
-                .skip(6 * (currentPage - 1))
-                .limit(6)
+                .skip(5 * (currentPage - 1))
+                .limit(5)
         }
 
         book

@@ -1,0 +1,26 @@
+.header-font {
+    font-weight: 300;
+    color: #42a5f5;
+}
+
+input[type=text] {
+    border: .5px solid #e0e0e0 !important;
+    box-shadow: none !important;
+    border-radius: 100px;
+    background: url('~@/assets/images/search.png') no-repeat scroll 15px 12px;
+    margin-top: 15px;
+    padding-left: 40px;
+    box-sizing: inherit;
+}
+
+input[type=text]:focus {
+    background-color: #e3f2fd;
+}
+
+input[type=text]:hover {
+    background-color: #e3f2fd;
+}
+
+focus::placeholder {
+    color: #e3f2fd;
+}

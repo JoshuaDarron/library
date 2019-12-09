@@ -9,6 +9,7 @@
 			</a>
 		</div>
 	</nav>
+
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m2 l3 xl2">
@@ -33,23 +34,23 @@
 					<li>
 						<div class="divider"></div>
 					</li>
-						<router-link to="/">
-							<li>
-								<a class="waves-effect" href="#">
-									<i class="material-icons">
-										home
-									</i>
-									Home
-								</a>
-							</li>
-						</router-link>
-					<router-link to="/archive">
+					<router-link to="/search">
 						<li>
-							<a class="waves-effect"  href="#">
+							<a class="waves-effect" href="#">
 								<i class="material-icons">
-									archive
+									search
 								</i>
-								Archive
+								Search
+							</a>
+						</li>
+					</router-link>
+					<router-link to="/">
+						<li>
+							<a class="waves-effect" href="#">
+								<i class="material-icons">
+									home
+								</i>
+								Home
 							</a>
 						</li>
 					</router-link>
@@ -60,6 +61,16 @@
 									bookmark
 								</i>
 								Bookmarks
+							</a>
+						</li>
+					</router-link>
+					<router-link to="/archive">
+						<li>
+							<a class="waves-effect"  href="#">
+								<i class="material-icons">
+									archive
+								</i>
+								Archive
 							</a>
 						</li>
 					</router-link>
@@ -74,7 +85,10 @@
 						</li>
 					</router-link>
 					<li>
-						<a class="waves-effect" href="https://github.com/JDarron?tab=repositories" target="_blank">
+						<a class="waves-effect" href="http://spears-phillips.herokuapp.com/" target="_blank">
+							<i class="material-icons">
+								brush
+							</i>
 							Developer
 						</a>
 					</li>
@@ -96,8 +110,9 @@ import 'materialize-css/dist/css/materialize.css'
 
 export default {
 	name: 'App',
+
 	mounted() {
-		M.AutoInit();
+		M.AutoInit()
 	}
 }
 </script>
@@ -105,9 +120,5 @@ export default {
 <style>
 .nav-wrapper {
 	background-color: #42a5f5;
-}
-
-.header-font {
-	color: #42a5f5;
 }
 </style>

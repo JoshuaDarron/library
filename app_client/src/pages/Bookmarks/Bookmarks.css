@@ -1,0 +1,12 @@
+.header-font {
+    font-weight: 300;
+    color: #42a5f5 !important; 
+}
+
+.active {
+    background-color: #42a5f5 !important;
+}
+
+.pagination {
+	clear: left
+}

@@ -10,7 +10,7 @@
 
 <script>
 import Card from "../components/Card/Card";
-import api from "../helpers/API";
+import api from "../helpers/api.hlpr";
 
 export default {
     name: "Home",

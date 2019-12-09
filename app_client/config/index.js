@@ -11,11 +11,11 @@ dev: {
 	assetsSubDirectory: 'static',
 	assetsPublicPath: '/',
 	proxyTable: {
-		'/api/books': {
+		'/api/book': {
 			target: 'http://localhost:3001',
 			changeOrigin: true
 		},
-		'/api/book': {
+		'/api/google': {
 			target: 'http://localhost:3001',
 			changeOrigin: true
 		}

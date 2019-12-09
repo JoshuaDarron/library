@@ -1,14 +1,16 @@
-require("dotenv").config()
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const mongoose = require('mongoose')
 const path = require('path')
+
+const app = express()
+
 const port = process.env.PORT || 3001
 const MONGODB_URI = 'mongodb://localhost/googlebooks'
-const app = express()
-const apiRoutes = require('./app_api/routes/book.routes')
-const googlebooksRoutes = require("./app_api/routes/googlebooks.routes")
+
+const apiRoutes = require('./app_api/routes/index.routes')
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -22,13 +24,8 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
     .catch(err => console.error(err))
 
 
-app.get('*', function (req, res) {
-    res.status(200).json({message: "Hello? Is it me you're looking for?"})
-})
-
-
 app.use('/api', apiRoutes)
-app.use('/', googlebooksRoutes)
+app.use('*', express.static(path.join(__dirname, 'public')))
 
 
 app.listen(port, () => console.log(`http://localhost:${port}`))

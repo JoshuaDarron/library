@@ -1,41 +1,100 @@
 <template>
-	<div>
-		<div v-for="book in books" v-bind:key="book.id">
-			<div class="col s6 m6 l4 xl3">
-				<a class="card-link" :href="book.link" target="_blank" v-on:mouseover="mouseover">
-					<div class="card">
-						<div class="card-image">
-							<img :src="book.image">
-						</div>
-						<div class="card-content">
-							<p class="fadeout tooltipped card-text" data-position="bottom" data-tooltip="book.title">{{ book.shortTitle }}</p>
-							<hr />
-							<p class="card-text">{{ book.authors[0] }}</p>
-						</div>
-					</div>
-				</a>
+	<div class="row">
+		<div class="card horizontal hoverable card-container" :class="color">
+			<img :src="book.thumbnail">
+			<div class="card-stacked">
+				<div class="card-content">
+					<a class="title" :href="book.link" target="_blank">
+						{{ book.title }}
+					</a>
+					<p class="authors">
+						{{ book.authors.join(', ') }}
+					</p>
+				</div>
 			</div>
+		</div>
+		<div class="right-align">
+			<a class="btn-floating btn-medium waves-effect waves-light blue hoverable"
+				value="bookmark" 
+				v-if="!book.isBookmarked" 
+				v-on:click="onClick">
+				<i class="material-icons">
+					bookmark
+				</i>
+			</a>
+			<a class="btn-floating btn-medium waves-effect waves-light green hoverable" 
+				value="archive" 
+				v-if="!book.isSaved" 
+				v-on:click="onClick">
+				<i class="material-icons">
+					archive
+				</i>
+			</a>
+			<a class="btn-floating btn-medium waves-effect waves-light red hoverable" 
+				value="delete" 
+				v-if="!book.isDeleted" 
+				v-on:click="onClick">
+				<i class="material-icons">
+					delete
+				</i>
+			</a>
 		</div>
 	</div>
 </template>
 
 
 <script>
-import M from "materialize-css"
+import api from "../../helpers/api.hlpr"
+
 
 export default {
 	name: 'Card',
 	props: {
-		books: Array
-	},
-	data() {
-		return {
-			active: false
+		book: {
+			type: Object,
+			required: true
+		},
+		color: {
+			type: String
 		}
 	},
-	methods: {
-		mouseover: function () {
 
+	methods: {
+		onClick: function (e) {
+			e.preventDefault()
+
+			const button = e.currentTarget.getAttribute('value')
+			const book = {
+				title: this.book.title,
+				authors: this.book.authors,
+				description: this.book.description,
+				thumbnail: this.book.thumbnail,
+				link: this.book.link,
+				isBookmarked: true,
+				isSaved: false,
+				isDeleted: false
+			}
+
+			if (button === 'bookmark') {
+				api
+					.createBook(book)
+					.then(res => {
+						console.log(res)
+					})
+			} else if (button === 'delete') {
+				api
+					.updateBook(
+						this.book._id,
+						{
+							isDeleted: true,
+							isBookmarked: false,
+							isSaved: false
+						}
+					)
+					.then(res => {
+						this.book = res.data
+					})
+			}
 		}
 	}
 }
