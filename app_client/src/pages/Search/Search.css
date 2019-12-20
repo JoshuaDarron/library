@@ -1,25 +1,18 @@
 
 .header-font {
     font-weight: 300;
-    color: #42a5f5;
+    color: #fff;
 }
 
-input[type=text] {
+input[type=text], textarea {
     border: .5px solid #e0e0e0 !important;
     box-shadow: none !important;
     border-radius: 100px;
     background: url('~@/assets/images/search.png') no-repeat scroll 15px 14px;
+    background-color: #e3f2fd;
     margin-top: 15px;
     text-indent: 40px;
     box-sizing: inherit;
-}
-
-input[type=text]:focus {
-    background-color: #e3f2fd;
-}
-
-input[type=text]:hover {
-    background-color: #e3f2fd;
 }
 
 focus::placeholder {

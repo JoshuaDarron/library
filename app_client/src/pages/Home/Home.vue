@@ -3,14 +3,15 @@
     <h1 class="header header-font">
         Home
     </h1>
+    <hr>
 </div>
 </template>
 
 
 
 <script>
-import Card from "../components/Card/Card";
-import api from "../helpers/api.hlpr";
+import Card from "../../components/Card/Card";
+import api from "../../helpers/api.hlpr";
 
 export default {
     name: "Home",
@@ -30,7 +31,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .header-font {
-        font-weight: 300;
-    }
+@import './Home.css';
 </style>
