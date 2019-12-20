@@ -2,6 +2,10 @@
     font-size: 19px;
 }
 
+.card {
+    border-radius: 25px;
+}
+
 .authors {
     margin-top: 15px !important;
 }
