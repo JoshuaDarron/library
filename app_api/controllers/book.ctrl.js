@@ -1,7 +1,7 @@
 const db = require('../models')
 
-module.exports = {
 
+module.exports = {
     createBook: (req, res) => {
         db
             .Book
@@ -39,6 +39,43 @@ module.exports = {
     },
 
 
+    findTypesOfBooks: (req, res) => {
+        const path = req.route.path
+        let bookType = '';
+
+        if (path === '/bookmarked') bookType = 'isBookmarked'
+        else if (path === '/archived') bookType = 'isSaved'
+        else bookType = 'isDeleted'
+
+        const book = db.Book.find({
+            [bookType]: true
+        })
+        const currentPage = +req.query.page
+
+        if (currentPage) {
+            book
+                .skip(5 * (currentPage - 1))
+                .limit(5)
+        }
+
+        book
+            .then(resBook => {
+                fetchedBooks = resBook
+                return book.countDocuments()
+            })
+            .then(count => res.status(200).json({
+                message: 'Books fetched successfully!',
+                books: fetchedBooks,
+                maxCount: count
+            }))
+            .catch(err => {
+                res.status(500).json({
+                    message: 'Fetching books failed'
+                })
+            })
+    },
+
+
     findOneBook: (req, res) => {
         db
             .Book
@@ -47,6 +84,7 @@ module.exports = {
             .catch(err => console.error(err))
     },
 
+
     updateBook: (req, res) => {
         db.Book.update(
             { _id: req.params.id },
@@ -54,6 +92,7 @@ module.exports = {
             .then(resBook => res.json(resBook))
             .catch(err => console.error(err))
     },
+
 
     deleteBook: (req, res) => {
         console.log(req.params.id)

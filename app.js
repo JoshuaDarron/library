@@ -17,15 +17,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(logger('dev'))
 
+app.use('/api', apiRoutes)
+app.use('*', express.static(path.join(__dirname, 'public')))
+
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
     .then(() => console.log('Successfully connected to Mongo database'))
     .catch(err => console.error(err))
-
-
-app.use('/api', apiRoutes)
-app.use('*', express.static(path.join(__dirname, 'public')))
 
 
 app.listen(port, () => console.log(`http://localhost:${port}`))

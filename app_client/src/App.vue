@@ -1,14 +1,16 @@
 <template>
 <div id="app">
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" data-target="slide-out" class="sidenav-trigger">
-				<i class="large material-icons">
-					menu
-				</i>
-			</a>
-		</div>
-	</nav>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" data-target="slide-out" class="sidenav-trigger nav-button">
+					<i class="large material-icons">
+						menu
+					</i>
+				</a>
+			</div>
+		</nav>
+	</div>
 
 	<div class="container">
 		<div class="row">
@@ -104,6 +106,7 @@
 </div>
 </template>
 
+
 <script>
 import M from "materialize-css"
 import 'materialize-css/dist/css/materialize.css'
@@ -120,6 +123,10 @@ export default {
 
 <style>
 .nav-wrapper {
-	background-color: #7e57c2;
+	background-color: #fafafa;
+}
+
+.material-icons { 
+	color: rgba(0, 0, 0, 0.54); 
 }
 </style>
