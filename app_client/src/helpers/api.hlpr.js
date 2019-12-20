@@ -16,6 +16,12 @@ export default {
     return axios.get(ROUTE + `?page=${page}`)
   },
   /**
+   * @param {String} page
+   */
+  getTypesOfBooks(page, path) {
+    return axios.get(ROUTE + path + `?page=${page}`)
+  },
+  /**
    * @param {String} book
    */
   createBook(book) {

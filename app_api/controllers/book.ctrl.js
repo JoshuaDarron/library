@@ -61,7 +61,9 @@ module.exports = {
         book
             .then(resBook => {
                 fetchedBooks = resBook
-                return book.countDocuments()
+                return db.Book.countDocuments({
+                    [bookType]: true
+                })
             })
             .then(count => res.status(200).json({
                 message: 'Books fetched successfully!',

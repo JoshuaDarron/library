@@ -20,11 +20,6 @@ export default new Router({
 			path: '/home',
 			name: 'Home',
 			component: Home
-		}, 
-		{
-			path: '/search',
-			name: 'Search',
-			component: Search
 		},
 		{
 			path: '/archive',

@@ -10,7 +10,7 @@
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<div v-for="book in books" :key="book.id">
-					<Card :book="book" :color="color" />
+					<Card v-if="book.isBookmarked" :book="book" :color="color" />
 				</div>
 
 				<ul class="pagination center-align">
@@ -61,7 +61,7 @@ export default {
 	},
 
 	created: function() {
-		api.getAllBooks(this.active_el)
+		api.getTypesOfBooks(this.active_el, '/bookmarked')
 			.then(res => {
 				this.maxCount = Math.ceil(res.data.maxCount / 5)
 

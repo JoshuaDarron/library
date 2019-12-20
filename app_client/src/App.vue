@@ -36,7 +36,7 @@
 					<li>
 						<div class="divider"></div>
 					</li>
-					<router-link to="/search">
+					<router-link to="/">
 						<li>
 							<a class="waves-effect" href="#">
 								<i class="material-icons">

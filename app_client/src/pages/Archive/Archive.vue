@@ -61,8 +61,9 @@ export default {
 	},
 
 	created: function() {
-		api.getAllBooks(this.active_el)
+		api.getTypesOfBooks(this.active_el, '/archived')
 			.then(res => {
+				console.log(res)
 				this.maxCount = Math.ceil(res.data.maxCount / 5)
 
 				for (let book of res.data.books) {

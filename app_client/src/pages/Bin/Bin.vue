@@ -61,7 +61,7 @@ export default {
 	},
 
 	created: function() {
-		api.getAllBooks(this.active_el)
+		api.getTypesOfBooks(this.active_el, '/deleted')
 			.then(res => {
 				this.maxCount = Math.ceil(res.data.maxCount / 5)
 

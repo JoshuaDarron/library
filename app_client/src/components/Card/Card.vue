@@ -77,11 +77,29 @@ export default {
 
 			if (button === 'bookmark') {
 				api
-					.createBook(book)
-					.then(res => {
-						console.log(res)
-					})
-			} else if (button === 'delete') {
+					.updateBook(
+						this.book._id,
+						{
+							isDeleted: false,
+							isBookmarked: true,
+							isSaved: false
+						}
+					)
+					.then(res => console.log(res))
+					.catch(err => console.error(err))
+			} else if (button === 'archive') {
+				api
+					.updateBook(
+						this.book._id,
+						{
+							isDeleted: false,
+							isBookmarked: false,
+							isSaved: true
+						}
+					)
+					.then(res => console.log(res))
+					.catch(err => console.error(err))
+			} else {
 				api
 					.updateBook(
 						this.book._id,
@@ -91,9 +109,8 @@ export default {
 							isSaved: false
 						}
 					)
-					.then(res => {
-						this.book = res.data
-					})
+					.then(res => console.log(res))
+					.catch(err => console.error(err))
 			}
 		}
 	}
