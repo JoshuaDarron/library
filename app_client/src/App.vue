@@ -44,7 +44,7 @@
 							</a>
 						</li>
 					</router-link>
-					<router-link to="/">
+					<router-link to="/home">
 						<li>
 							<a class="waves-effect" href="#">
 								<i class="material-icons">
@@ -120,6 +120,6 @@ export default {
 
 <style>
 .nav-wrapper {
-	background-color: #42a5f5;
+	background-color: #7e57c2;
 }
 </style>
