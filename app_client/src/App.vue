@@ -117,6 +117,7 @@ export default {
 }
 </script>
 
+
 <style>
 .nav-wrapper {
 	background-color: #42a5f5;
