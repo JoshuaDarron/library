@@ -14,8 +14,10 @@
 				</div>
 
 				<ul v-if="maxCount > 5" class="pagination center-align">
-					<li class="disabled">
-						<a href="#">
+					<li class="waves-effect">
+						<a 
+							v-on:click="downPage"
+							href="#">
 							<i class="material-icons">chevron_left</i>
 						</a>
 					</li>
@@ -30,7 +32,9 @@
 					</li>
 
 					<li class="waves-effect">
-						<a href="#">
+						<a 
+							v-on:click="upPage"
+							href="#">
 							<i class="material-icons">chevron_right</i>
 						</a>
 					</li>
@@ -55,6 +59,7 @@ export default {
 		return {
 			books: [],
 			maxCount: 1,
+			maxPage: 1,
             active_el: 1,
             color: 'light-blue lighten-5'
 		}
@@ -81,6 +86,24 @@ export default {
 			this.active_el = parseInt(e.target.text)
 
 			this.getBookmarkedBooks()
+		},
+
+		upPage: function (e) {
+			e.preventDefault()
+			if (this.maxPage != this.active_el) {
+				window.scrollTo(0,0)
+				++this.active_el
+				this.getBookmarkedBooks()
+			}
+		},
+
+		downPage: function (e) {
+			e.preventDefault()
+			if (this.active_el != 1) {
+				window.scrollTo(0,0)
+				--this.active_el
+				this.getBookmarkedBooks()
+			}
 		}
 	}
 }

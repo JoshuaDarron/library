@@ -10,12 +10,12 @@
 				</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li>
-						<a class="black-text" href="/login">
+						<a href="/login">
 							Login
 						</a>
 					</li>
 					<li>
-						<a class="black-text" href="/signup">
+						<a href="/signup">
 							Signup
 							</a>
 						</li>
@@ -135,7 +135,7 @@ export default {
 
 <style>
 .nav-wrapper {
-	background-color: #fafafa;
+	background-color: #3d5afe;
 }
 
 .material-icons { 

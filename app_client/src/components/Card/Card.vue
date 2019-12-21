@@ -8,14 +8,15 @@
 						{{ book.title }}
 					</a>
 					<p class="authors">
-						{{ book.authors.join(', ') }}
+						<!-- {{ book.authors.join(', ') }} -->
+						{{authors}}
 					</p>
 				</div>
 			</div>
 		</div>
 
 		<div class="right-align">
-			<a class="btn-floating btn-medium waves-effect waves-light blue hoverable"
+			<a class="btn-floating btn-medium waves-effect waves-light blue darken-1 hoverable"
 				value="bookmark" 
 				v-if="book._id && !book.isBookmarked"
 				v-on:click="onClick">
@@ -57,6 +58,12 @@ export default {
 		},
 		color: {
 			type: String
+		}
+	},
+
+	data () {
+		return {
+			authors: this.book.authors.length > 0 ? this.book.authors.join(', ') : this.book.authors[0]
 		}
 	},
 
