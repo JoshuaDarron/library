@@ -13,10 +13,11 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="right-align">
 			<a class="btn-floating btn-medium waves-effect waves-light blue hoverable"
 				value="bookmark" 
-				v-if="!book.isBookmarked"
+				v-if="book._id && !book.isBookmarked"
 				v-on:click="onClick">
 				<i class="material-icons">
 					bookmark
@@ -32,7 +33,7 @@
 			</a>
 			<a class="btn-floating btn-medium waves-effect waves-light red hoverable" 
 				value="delete" 
-				v-if="!book.isDeleted" 
+				v-if="book._id && !book.isDeleted" 
 				v-on:click="onClick">
 				<i class="material-icons">
 					delete
@@ -70,21 +71,25 @@ export default {
 				.catch(err => console.error(err))
 		},
 
-		onClick: function (e) {
-			e.preventDefault()
-
-			const button = e.currentTarget.getAttribute('value')
+		createBook: function () {
 			const book = {
 				title: this.book.title,
 				authors: this.book.authors,
 				description: this.book.description,
 				thumbnail: this.book.thumbnail,
 				link: this.book.link,
-				isBookmarked: true,
-				isSaved: false,
-				isDeleted: false
+				isSaved: true
 			}
 
+			api.createBook(book)
+				.then(res => {return})
+				.catch(err => console.error(err))
+		},
+
+		onClick: function (e) {
+			e.preventDefault()
+			
+			const button = e.currentTarget.getAttribute('value')
 			if (button === 'bookmark') {
 				this.updateBook({
 					isDeleted: false,
@@ -92,6 +97,9 @@ export default {
 					isSaved: false
 				})
 			} else if (button === 'archive') {
+				if (!this.book._id) {
+					this.createBook()
+				}
 				this.updateBook({
 					isDeleted: false,
 					isBookmarked: false,
