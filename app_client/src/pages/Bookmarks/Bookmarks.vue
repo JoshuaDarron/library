@@ -13,7 +13,7 @@
 					<Card v-if="book.isBookmarked" :book="book" :color="color" />
 				</div>
 
-				<ul class="pagination center-align">
+				<ul v-if="maxCount > 5" class="pagination center-align">
 					<li class="disabled">
 						<a href="#">
 							<i class="material-icons">chevron_left</i>
@@ -21,8 +21,8 @@
 					</li>
 
 					<li 
-						v-for="n in maxCount" :key="n" 
-						v-on:click="onClick"
+						v-for="n in maxPage" :key="n" 
+						v-on:click="changePage"
 						:class="active_el === n ? 'active blue' : 'waves-effect'" >
 						<a href="#">
 							{{ n }}
@@ -61,37 +61,26 @@ export default {
 	},
 
 	created: function() {
-		api.getTypesOfBooks(this.active_el, '/bookmarked')
-			.then(res => {
-				this.maxCount = Math.ceil(res.data.maxCount / 5)
-
-				for (let book of res.data.books) {
-					if (book.title.length > 23) {
-						book.shortTitle = book.title.slice(0, 18)
-					}
-				}
-
-				this.books = res.data.books
-			})
+		this.getBookmarkedBooks()
 	},
 
 	methods: {
-		onClick: function (e) {
+		getBookmarkedBooks: function () {
+			api.getTypesOfBooks(this.active_el, '/bookmarked')
+				.then(res => {
+					this.maxPage = Math.ceil(res.data.maxCount / 5)
+					this.maxCount = res.data.maxCount
+
+					this.books = res.data.books
+				})
+		},
+
+		changePage: function (e) {
 			e.preventDefault()
 			window.scrollTo(0,0)
 			this.active_el = parseInt(e.target.text)
 
-			api.getAllBooks(this.active_el)
-				.then(res => {
-
-					for (let book of res.data.books) {
-						if (book.title.length > 23) {
-							book.shortTitle = book.title.slice(0, 18)
-						}
-					}
-
-					this.books = res.data.books
-				})
+			this.getBookmarkedBooks()
 		}
 	}
 }

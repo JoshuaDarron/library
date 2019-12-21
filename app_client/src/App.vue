@@ -8,6 +8,18 @@
 						menu
 					</i>
 				</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li>
+						<a class="black-text" href="/login">
+							Login
+						</a>
+					</li>
+					<li>
+						<a class="black-text" href="/signup">
+							Signup
+							</a>
+						</li>
+				</ul>
 			</div>
 		</nav>
 	</div>

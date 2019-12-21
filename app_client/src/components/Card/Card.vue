@@ -16,7 +16,7 @@
 		<div class="right-align">
 			<a class="btn-floating btn-medium waves-effect waves-light blue hoverable"
 				value="bookmark" 
-				v-if="!book.isBookmarked" 
+				v-if="!book.isBookmarked"
 				v-on:click="onClick">
 				<i class="material-icons">
 					bookmark
@@ -60,6 +60,16 @@ export default {
 	},
 
 	methods: {
+		updateBook: function (book) {
+			api
+				.updateBook(
+					this.book._id,
+					book
+				)
+				.then(res => {return})
+				.catch(err => console.error(err))
+		},
+
 		onClick: function (e) {
 			e.preventDefault()
 
@@ -76,41 +86,23 @@ export default {
 			}
 
 			if (button === 'bookmark') {
-				api
-					.updateBook(
-						this.book._id,
-						{
-							isDeleted: false,
-							isBookmarked: true,
-							isSaved: false
-						}
-					)
-					.then(res => console.log(res))
-					.catch(err => console.error(err))
+				this.updateBook({
+					isDeleted: false,
+					isBookmarked: true,
+					isSaved: false
+				})
 			} else if (button === 'archive') {
-				api
-					.updateBook(
-						this.book._id,
-						{
-							isDeleted: false,
-							isBookmarked: false,
-							isSaved: true
-						}
-					)
-					.then(res => console.log(res))
-					.catch(err => console.error(err))
+				this.updateBook({
+					isDeleted: false,
+					isBookmarked: false,
+					isSaved: true
+				})
 			} else {
-				api
-					.updateBook(
-						this.book._id,
-						{
-							isDeleted: true,
-							isBookmarked: false,
-							isSaved: false
-						}
-					)
-					.then(res => console.log(res))
-					.catch(err => console.error(err))
+				this.updateBook({
+					isDeleted: true,
+					isBookmarked: false,
+					isSaved: false
+				})
 			}
 		}
 	}
