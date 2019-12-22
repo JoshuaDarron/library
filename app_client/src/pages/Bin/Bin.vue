@@ -91,7 +91,7 @@ export default {
 			if (this.maxPage != this.active_el) {
 				window.scrollTo(0,0)
 				++this.active_el
-				this.getBookmarkedBooks()
+				this.getDeletedBooks()
 			}
 		},
 
@@ -100,7 +100,7 @@ export default {
 			if (this.active_el != 1) {
 				window.scrollTo(0,0)
 				--this.active_el
-				this.getBookmarkedBooks()
+				this.getDeletedBooks()
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="header header-font">
-			Bookmarks
+			Checkedout
 		</h1>
 
 		<div class="divider"></div>
@@ -50,7 +50,7 @@ import Card from "../../components/Card/Card"
 import api from "../../helpers/api.hlpr"
 
 export default {
-	name: "Bookmarks",
+	name: "Checkedout",
 	components: {
 		Card
 	},
@@ -66,11 +66,11 @@ export default {
 	},
 
 	created: function() {
-		this.getBookmarkedBooks()
+		this.getCheckedoutedBooks()
 	},
 
 	methods: {
-		getBookmarkedBooks: function () {
+		getCheckedoutedBooks: function () {
 			api.getTypesOfBooks(this.active_el, '/bookmarked')
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
@@ -85,7 +85,7 @@ export default {
 			window.scrollTo(0,0)
 			this.active_el = parseInt(e.target.text)
 
-			this.getBookmarkedBooks()
+			this.getCheckedoutedBooks()
 		},
 
 		upPage: function (e) {
@@ -93,7 +93,7 @@ export default {
 			if (this.maxPage != this.active_el) {
 				window.scrollTo(0,0)
 				++this.active_el
-				this.getBookmarkedBooks()
+				this.getCheckedoutedBooks()
 			}
 		},
 
@@ -102,7 +102,7 @@ export default {
 			if (this.active_el != 1) {
 				window.scrollTo(0,0)
 				--this.active_el
-				this.getBookmarkedBooks()
+				this.getCheckedoutedBooks()
 			}
 		}
 	}
@@ -111,5 +111,5 @@ export default {
 
 
 <style scoped>
-@import './Bookmarks.css';
+@import './Checkedout.css';
 </style>

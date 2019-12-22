@@ -68,33 +68,33 @@
 							</a>
 						</li>
 					</router-link>
-					<router-link to="/bookmarks">
+					<router-link to="/checkedout">
 						<li>
 							<a class="waves-effect" href="#">
 								<i class="material-icons">
 									bookmark
 								</i>
-								Bookmarks
+								Checkedout
 							</a>
 						</li>
 					</router-link>
-					<router-link to="/archive">
+					<router-link to="/saved">
 						<li>
 							<a class="waves-effect"  href="#">
 								<i class="material-icons">
-									archive
+									save
 								</i>
-								Archive
+								Saved
 							</a>
 						</li>
 					</router-link>
-					<router-link to="/bin">
+					<router-link to="/history">
 						<li>
 							<a class="waves-effect" href="#">
 								<i class="material-icons">
-									delete
+									history
 								</i>
-								Bin
+								History
 							</a>
 						</li>
 					</router-link>

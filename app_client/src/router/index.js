@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Search from '@/pages/Search/Search'
 import Home from '@/pages/Home/Home'
-import Archive from '@/pages/Archive/Archive'
-import Bookmarks from '@/pages/Bookmarks/Bookmarks'
+import Saved from '@/pages/Saved/Saved'
+import Checkedout from '@/pages/Checkedout/Checkedout'
 import Bin from '@/pages/Bin/Bin'
 
 Vue.use(Router)
@@ -22,14 +22,14 @@ export default new Router({
 			component: Home
 		},
 		{
-			path: '/archive',
-			name: 'Archive',
-			component: Archive
+			path: '/saved',
+			name: 'Saved',
+			component: Saved
 		},
 		{
-			path: '/bookmarks',
-			name: 'Bookmarks',
-			component: Bookmarks
+			path: '/checkedout',
+			name: 'Checkedout',
+			component: Checkedout
 		},
 		{
 			path: '/bin',

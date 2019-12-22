@@ -29,7 +29,7 @@
 				v-if="!book.isSaved" 
 				v-on:click="onClick">
 				<i class="material-icons">
-					archive
+					save
 				</i>
 			</a>
 			<a class="btn-floating btn-medium waves-effect waves-light red hoverable" 

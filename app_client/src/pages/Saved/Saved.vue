@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="header header-font">
-			Archive
+			Saved
 		</h1>
 
 		<div class="divider"></div>
@@ -50,7 +50,7 @@ import Card from "../../components/Card/Card"
 import api from "../../helpers/api.hlpr"
 
 export default {
-	name: "Archive",
+	name: "Saved",
 	components: {
 		Card
 	},
@@ -66,11 +66,11 @@ export default {
 	},
 
 	created: function() {
-		this.getArchivedBooks()
+		this.getSaveddBooks()
 	},
 
 	methods: {
-		getArchivedBooks: function () {
+		getSaveddBooks: function () {
 			api.getTypesOfBooks(this.active_el, '/archived')
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
@@ -84,7 +84,7 @@ export default {
 			window.scrollTo(0,0)
 			this.active_el = parseInt(e.target.text)
 
-			this.getArchivedBooks()
+			this.getSaveddBooks()
 		},
 
 		upPage: function (e) {
@@ -92,7 +92,7 @@ export default {
 			if (this.maxPage != this.active_el) {
 				window.scrollTo(0,0)
 				++this.active_el
-				this.getArchivedBooks()
+				this.getSaveddBooks()
 			}
 		},
 
@@ -101,7 +101,7 @@ export default {
 			if (this.active_el != 1) {
 				window.scrollTo(0,0)
 				--this.active_el
-				this.getArchivedBooks()
+				this.getSaveddBooks()
 			}
 		}
 	}
@@ -110,5 +110,5 @@ export default {
 
 
 <style scoped>
-@import './Archive.css';
+@import './Saved.css';
 </style>
