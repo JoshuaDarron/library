@@ -1,0 +1,31 @@
+form {
+    margin-top: 50px;
+}
+
+input {
+    border: .5px solid #e0e0e0 !important;
+    max-width: 500px;
+    box-shadow: none !important;
+    border-radius: 100px !important;
+    background-color: #fff !important;
+    text-indent: 40px;
+    box-sizing: inherit;
+}
+
+input[type="email"] {
+    background: url('~@/assets/images/email.png') no-repeat scroll 15px 14px;
+}
+
+input[type="password"] {
+    background: url('~@/assets/images/lock.png') no-repeat scroll 15px 14px;
+}
+
+label {
+    margin-top: 200px !important;
+    color: #fff !important;
+    font-size: 20px;
+}
+
+.submit {
+    border-radius: 100px !important;
+}

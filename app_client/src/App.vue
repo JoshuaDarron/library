@@ -8,7 +8,7 @@
 							menu
 						</i>
 					</a>
-					<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<ul id="nav-mobile" class="right">
 						<li>
 							<a href="/login">
 								Login
@@ -59,9 +59,5 @@ export default {
 <style>
 .nav-wrapper {
 	background-color: #3d5afe;
-}
-
-.material-icons { 
-	color: rgba(0, 0, 0, 0.54); 
 }
 </style>
