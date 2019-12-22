@@ -24,7 +24,8 @@
 			</nav>
 		</div>
 
-		<Dashboard />
+		<Dashboard v-if="path != '/login' && path != '/signup'" />
+		<router-view v-if="path == '/login' || path == '/signup'"/>
 	</div>
 </template>
 
@@ -37,12 +38,19 @@ import Dashboard from "./layouts/Dashboard/Dashboard"
 
 export default {
 	name: 'App',
+
 	components: {
 		Dashboard
 	},
 
-	mounted() {
+	mounted () {
 		M.AutoInit()
+	},
+
+	data () {
+		return {
+			path: window.location.pathname
+		}
 	}
 }
 </script>

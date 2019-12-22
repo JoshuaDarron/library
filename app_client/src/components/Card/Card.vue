@@ -8,7 +8,6 @@
 						{{ book.title }}
 					</a>
 					<p class="authors">
-						<!-- {{ book.authors.join(', ') }} -->
 						{{authors}}
 					</p>
 				</div>

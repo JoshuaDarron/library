@@ -6,6 +6,7 @@ import Home from '@/pages/Home/Home'
 import Saved from '@/pages/Saved/Saved'
 import Checkedout from '@/pages/Checkedout/Checkedout'
 import History from '@/pages/History/History'
+import Login from '@/pages/Login/Login'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
 			path: '/history',
 			name: 'History',
 			component: History
+		},
+		{
+			path: '/login',
+			name: 'Login',
+			component: Login
 		}
 	]
 })
