@@ -76,7 +76,7 @@ export default {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 
-					this.books = res.data.books
+					this.books = res.data.books.reverse()
 				})
 		},
 

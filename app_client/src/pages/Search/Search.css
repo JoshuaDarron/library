@@ -9,7 +9,7 @@ input[type=text], textarea {
     box-shadow: none !important;
     border-radius: 100px;
     background: url('~@/assets/images/search.png') no-repeat scroll 15px 14px;
-    background-color: #e3f2fd;
+    background-color: #fff;
     margin-top: 15px;
     text-indent: 40px;
     box-sizing: inherit;

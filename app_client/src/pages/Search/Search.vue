@@ -44,7 +44,6 @@ export default {
                 .searchGoogleInBooks(this.query)
                 .then((res) => {
                     this.books = res.data
-                    console.log(this.books)
                     this.query = ''
                 })
         }

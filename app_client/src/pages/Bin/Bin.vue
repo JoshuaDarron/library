@@ -14,14 +14,16 @@
 				</div>
 
 				<ul v-if="maxCount > 5" class="pagination center-align">
-					<li class="disabled">
-						<a href="#">
+					<li class="waves-effect">
+						<a 
+							href="#"
+							v-on:click="downPage">
 							<i class="material-icons">chevron_left</i>
 						</a>
 					</li>
 
 					<li 
-						v-for="n in maxPages" :key="n" 
+						v-for="n in maxPage" :key="n" 
 						v-on:click="changePage"
 						:class="active_el === n ? 'active' : 'waves-effect'" >
 						<a href="#">
@@ -30,7 +32,9 @@
 					</li>
 
 					<li class="waves-effect">
-						<a href="#">
+						<a 
+							href="#"
+							v-on:click="upPage">
 							<i class="material-icons">chevron_right</i>
 						</a>
 					</li>
@@ -55,7 +59,7 @@ export default {
 		return {
 			books: [],
 			maxCount: 1,
-			maxPages: 1,
+			maxPage: 1,
 			active_el: 1,
 			color: '#ffebee red lighten-5'
 		}
@@ -69,7 +73,7 @@ export default {
 		getDeletedBooks: function () {
 			api.getTypesOfBooks(this.active_el, '/deleted')
 				.then(res => {
-					this.maxPages = Math.ceil(res.data.maxCount / 5)
+					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
 				})
@@ -79,8 +83,25 @@ export default {
 			e.preventDefault()
 			window.scrollTo(0, 0)
 			this.active_el = parseInt(e.target.text)
-
 			this.getDeletedBooks()
+		},
+
+		upPage: function (e) {
+			e.preventDefault()
+			if (this.maxPage != this.active_el) {
+				window.scrollTo(0,0)
+				++this.active_el
+				this.getBookmarkedBooks()
+			}
+		},
+
+		downPage: function (e) {
+			e.preventDefault()
+			if (this.active_el != 1) {
+				window.scrollTo(0,0)
+				--this.active_el
+				this.getBookmarkedBooks()
+			}
 		}
 	}
 }

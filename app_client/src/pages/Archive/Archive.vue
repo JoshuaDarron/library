@@ -14,14 +14,16 @@
 				</div>
 
 				<ul v-if="maxCount > 5" class="pagination center-align">
-					<li class="disabled">
+					<li 
+						class="waves-effect"
+						v-on:click="downPage">
 						<a href="#">
 							<i class="material-icons">chevron_left</i>
 						</a>
 					</li>
 
 					<li 
-						v-for="n in maxPages" :key="n" 
+						v-for="n in maxPage" :key="n" 
 						v-on:click="changePage"
 						:class="active_el === n ? 'active green' : 'waves-effect'" >
 						<a href="#">
@@ -29,7 +31,9 @@
 						</a>
 					</li>
 
-					<li class="waves-effect">
+					<li 
+						v-on:click="upPage"
+						class="waves-effect">
 						<a href="#">
 							<i class="material-icons">chevron_right</i>
 						</a>
@@ -55,7 +59,7 @@ export default {
 		return {
 			books: [],
 			maxCount: 1,
-			maxPages: 1,
+			maxPage: 1,
 			active_el: 1,
 			color: 'green lighten-5'
 		}
@@ -67,12 +71,12 @@ export default {
 
 	methods: {
 		getArchivedBooks: function () {
-		api.getTypesOfBooks(this.active_el, '/archived')
-			.then(res => {
-				this.maxPages = Math.ceil(res.data.maxCount / 5)
-				this.maxCount = res.data.maxCount
-				this.books = res.data.books
-			})
+			api.getTypesOfBooks(this.active_el, '/archived')
+				.then(res => {
+					this.maxPage = Math.ceil(res.data.maxCount / 5)
+					this.maxCount = res.data.maxCount
+					this.books = res.data.books
+				})
 		},
 
 		changePage: function (e) {
@@ -81,6 +85,24 @@ export default {
 			this.active_el = parseInt(e.target.text)
 
 			this.getArchivedBooks()
+		},
+
+		upPage: function (e) {
+			e.preventDefault()
+			if (this.maxPage != this.active_el) {
+				window.scrollTo(0,0)
+				++this.active_el
+				this.getArchivedBooks()
+			}
+		},
+
+		downPage: function (e) {
+			e.preventDefault()
+			if (this.active_el != 1) {
+				window.scrollTo(0,0)
+				--this.active_el
+				this.getArchivedBooks()
+			}
 		}
 	}
 }
