@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Search from '@/pages/Search/Search'
 import Home from '@/pages/Home/Home'
 import Saved from '@/pages/Saved/Saved'
