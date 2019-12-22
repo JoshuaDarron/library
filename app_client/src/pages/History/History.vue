@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="header header-font">
-			Bin
+			History
 		</h1>
 
 		<div class="divider"></div>
@@ -50,7 +50,7 @@ import Card from "../../components/Card/Card"
 import api from "../../helpers/api.hlpr"
 
 export default {
-	name: "Bin",
+	name: "History",
 	components: {
 		Card
 	},
@@ -109,5 +109,5 @@ export default {
 
 
 <style scoped>
-@import './Bin.css';
+@import './History.css';
 </style>

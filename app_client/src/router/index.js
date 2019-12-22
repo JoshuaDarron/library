@@ -4,7 +4,7 @@ import Search from '@/pages/Search/Search'
 import Home from '@/pages/Home/Home'
 import Saved from '@/pages/Saved/Saved'
 import Checkedout from '@/pages/Checkedout/Checkedout'
-import Bin from '@/pages/Bin/Bin'
+import History from '@/pages/History/History'
 
 Vue.use(Router)
 
@@ -32,9 +32,9 @@ export default new Router({
 			component: Checkedout
 		},
 		{
-			path: '/bin',
-			name: 'Bin',
-			component: Bin
+			path: '/history',
+			name: 'History',
+			component: History
 		}
 	]
 })
