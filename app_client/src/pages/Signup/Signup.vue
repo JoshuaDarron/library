@@ -2,6 +2,7 @@
 	<div>
         <div class="container">
             <div class="row">
+                <!-- TITLE COL -->
                 <div class="col s12 m7 white-text title-txt">
                     <h1 class="title-txt">
                         Welcome to the Library!
@@ -27,6 +28,8 @@
                         </li>
                     </ul>
                 </div>
+
+                <!-- FORM COL -->
                 <div class="col s12 m5 center-align">
                     <div class="card indigo accent-3 center-align hoverable">
                         <div class="card-content white-text">
