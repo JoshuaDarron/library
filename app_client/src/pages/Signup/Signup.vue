@@ -89,15 +89,18 @@ export default {
     methods: {
         submit: function (e) {
             e.preventDefault()
+
+            const firstName = this.firstName
+            const lastName = this.lastName
             const email = this.email
             const password = this.password
-            const fistName = this.fistName
-            const lastName = this.lastName
 
+            this.firstName = null
+            this.firstName = null
             this.email = null
             this.password = null
 
-            console.log(email, password)
+            console.log(firstName, lastName, email, password)
         }
     }
 }
