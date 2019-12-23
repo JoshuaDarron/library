@@ -7,6 +7,7 @@ import Saved from '@/pages/Saved/Saved'
 import Checkedout from '@/pages/Checkedout/Checkedout'
 import History from '@/pages/History/History'
 import Login from '@/pages/Login/Login'
+import Signup from '@/pages/Signup/Signup'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
 			path: '/login',
 			name: 'Login',
 			component: Login
+		},
+		{
+			path: '/signup',
+			name: 'Signup',
+			component: Signup
 		}
 	]
 })
