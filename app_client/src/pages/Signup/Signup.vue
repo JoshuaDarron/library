@@ -39,13 +39,9 @@
                             <p>Signup to start tracking your reading, here at the Library!</p>
 
                             <form  @submit.prevent="submit">    
-                                <label for="first-name">First Name</label>
+                                <label for="name">Full Name</label>
                                 <br />
-                                <input class="validate" name="first-name" type="text" v-model="firstName" />
-
-                                <label for="last-name">Last Name</label>
-                                <br />
-                                <input class="validate" name="last-name" type="text" v-model="lastName" />
+                                <input class="validate" name="name" type="text" v-model="name" />
 
                                 <label for="email">Email</label>
                                 <br />
@@ -84,8 +80,7 @@ export default {
         return {
             email: null,
             password: null,
-            firstName: null,
-            lastName: null
+            name: null
         }
     },
 
@@ -93,17 +88,15 @@ export default {
         submit: function (e) {
             e.preventDefault()
 
-            const firstName = this.firstName
-            const lastName = this.lastName
+            const name = this.name
             const email = this.email
             const password = this.password
 
-            this.firstName = null
-            this.firstName = null
+            this.name = null
             this.email = null
             this.password = null
 
-            console.log(firstName, lastName, email, password)
+            console.log(name, email, password)
         }
     }
 }

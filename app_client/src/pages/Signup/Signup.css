@@ -18,6 +18,10 @@ input {
     margin-bottom: 10px !important;
 }
 
+input[type="text"] {
+    background: url('~@/assets/images/account.png') no-repeat scroll 15px 14px;
+}
+
 input[type="email"] {
     background: url('~@/assets/images/email.png') no-repeat scroll 15px 14px;
 }
