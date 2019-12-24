@@ -40,11 +40,13 @@ export default {
 
     methods: {
         submitForm: function (e) {
+            const query = this.query
+            this.query = null
+
             googleApiHlpr
-                .searchGoogleInBooks(this.query)
+                .searchGoogleInBooks(query)
                 .then((res) => {
                     this.books = res.data
-                    this.query = ''
                 })
         }
     }
