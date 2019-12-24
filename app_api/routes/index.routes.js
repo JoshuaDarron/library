@@ -6,9 +6,9 @@ const bookRoutes = require('./book/book.routes')
 const googleRoutes = require('./api/google.routes')
 
 
+router.use('/google', googleRoutes)
 router.use('/user', userRoutes)
 router.use('/book', bookRoutes)
-router.use('/google', googleRoutes)
 
 
 module.exports = router

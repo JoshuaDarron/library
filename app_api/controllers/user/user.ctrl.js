@@ -27,6 +27,7 @@ exports.createUser = (req, res, next) => {
         })
 }
 
+
 exports.getUser = (req, res, next) => {
     let fetchedUser;
     User.findOne({ email: req.body.email })
@@ -38,6 +39,8 @@ exports.getUser = (req, res, next) => {
             }
 
             fetchedUser = resUser
+
+            console.log(fetchedUser)
 
             return bcrypt.compare(req.body.password, resUser.password)
         })
@@ -65,5 +68,15 @@ exports.getUser = (req, res, next) => {
         })
         .catch(err => res.status(401).json({
             message: 'Invalid authentication credentials'
+        }))
+}
+
+
+exports.deleteUser = (req, res) => {
+    User
+        .remove({ _id: req.params.id })
+        .then(resUser => res.json({ _id: req.params.id, message: "Deletion successfull." }))
+        .catch(err => res.status(404).json({
+            message: 'Couldn\'t find document'
         }))
 }
