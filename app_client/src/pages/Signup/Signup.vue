@@ -39,9 +39,13 @@
                             <p>Signup to start tracking your reading, here at the Library!</p>
 
                             <form  @submit.prevent="submit">    
-                                <!-- <label for="name">Full Name</label>
+                                <label for="firstName">First Name</label>
                                 <br />
-                                <input class="validate" name="name" type="text" v-model="name" /> -->
+                                <input class="validate" name="firstName" type="text" v-model="firstName" />
+
+                                <label for="lastName">Last Name</label>
+                                <br />
+                                <input class="validate" name="lastName" type="text" v-model="lastName" />
 
                                 <label for="email">Email</label>
                                 <br />
@@ -80,7 +84,8 @@ export default {
         return {
             email: null,
             password: null,
-            name: null
+            firstName: null,
+            lastName: null
         }
     },
 
@@ -88,18 +93,20 @@ export default {
         submit: function (e) {
             e.preventDefault()
 
-            const name = this.name
+            const firstName = this.firstName
+            const lastName = this.lastName
             const email = this.email
             const password = this.password
 
-            this.name = null
+            this.firstName = null
+            this.lastName = null
             this.email = null
             this.password = null
 
-            console.log(email, password)
-            auth.signup({email, password})
+            auth.signup({firstName, lastName, email, password})
                 .then(res => {
                     console.log(res)
+                    localStorage.setItem('token', res.token);
                 })
         }
     }

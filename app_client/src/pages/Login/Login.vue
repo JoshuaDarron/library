@@ -90,11 +90,11 @@ export default {
             this.email = null
             this.password = null
 
-            console.log({email, password})
 
             auth.login({email, password})
                 .then(res => {
                     console.log(res.data)
+                    localStorage.setItem('token', res.data.token);
                 })
         }
     }
