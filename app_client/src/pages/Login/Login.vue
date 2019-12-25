@@ -69,6 +69,7 @@
 
 <script>
 import auth from "../../helpers/auth.hlpr"
+import router from 'vue-router'
 
 export default {
     name: "Login",
@@ -92,10 +93,9 @@ export default {
 
 
             auth.login({email, password})
-                .then(res => {
-                    console.log(res.data)
-                    localStorage.setItem('token', res.data.token);
-                })
+                .then(res => localStorage.setItem('token', res.data.token))
+                .then(() => window.location.href = "/")
+                .catch(err => console.error(err))
         }
     }
 }
