@@ -11,15 +11,7 @@ dev: {
 	assetsSubDirectory: 'static',
 	assetsPublicPath: '/',
 	proxyTable: {
-		'/api/book': {
-			target: 'http://localhost:3001',
-			changeOrigin: true
-		},
-		'/api/google': {
-			target: 'http://localhost:3001',
-			changeOrigin: true
-		},
-		'/api/user/login': {
+		'/api': {
 			target: 'http://localhost:3001',
 			changeOrigin: true
 		}

@@ -39,9 +39,9 @@
                             <p>Signup to start tracking your reading, here at the Library!</p>
 
                             <form  @submit.prevent="submit">    
-                                <label for="name">Full Name</label>
+                                <!-- <label for="name">Full Name</label>
                                 <br />
-                                <input class="validate" name="name" type="text" v-model="name" />
+                                <input class="validate" name="name" type="text" v-model="name" /> -->
 
                                 <label for="email">Email</label>
                                 <br />
@@ -71,7 +71,7 @@
 
 
 <script>
-import api from "../../helpers/api.hlpr"
+import auth from "../../helpers/auth.hlpr"
 
 export default {
     name: "Signup",
@@ -96,7 +96,11 @@ export default {
             this.email = null
             this.password = null
 
-            console.log(name, email, password)
+            console.log(email, password)
+            auth.signup({email, password})
+                .then(res => {
+                    console.log(res)
+                })
         }
     }
 }

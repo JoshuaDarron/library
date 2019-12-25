@@ -97,7 +97,6 @@ module.exports = {
 
 
     deleteBook: (req, res) => {
-        console.log(req.params.id)
         db
             .Book
             .remove({ _id: req.params.id })

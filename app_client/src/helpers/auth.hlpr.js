@@ -7,12 +7,12 @@ export default {
      * @param {Object} user
      */
     login(user) {
-        return axios.get(`${ROUTE}/login/`, user)
+        return axios.post(`${ROUTE}/login`, user)
     },
     /**
      * @param {Object} user
      */
-    signin(user) {
-        return axios.get(`${ROUTE}/signin`, user)
+    signup(user) {
+        return axios.post(`${ROUTE}/signup`, user)
     }
 }

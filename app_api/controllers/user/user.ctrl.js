@@ -5,6 +5,7 @@ const User = require('../../models/user/User.model')
 
 
 exports.createUser = (req, res, next) => {
+    console.log(req.body)
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
@@ -29,7 +30,6 @@ exports.createUser = (req, res, next) => {
 
 
 exports.getUser = (req, res, next) => {
-    console.log(req.body.email)
     let fetchedUser;
     User.findOne({ email: req.body.email })
         .then(resUser => {
