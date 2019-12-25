@@ -4,15 +4,15 @@ const ROUTE = '/api/user'
 
 export default {
     /**
-     * @param {String} id
+     * @param {Object} user
      */
     login(user) {
-        return axios.get(`${ROUTE}/login`, user)
+        return axios.get(`${ROUTE}/login/`, user)
     },
     /**
-     * @param {String} page
+     * @param {Object} user
      */
     signin(user) {
         return axios.get(`${ROUTE}/signin`, user)
-    },
+    }
 }

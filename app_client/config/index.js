@@ -18,6 +18,10 @@ dev: {
 		'/api/google': {
 			target: 'http://localhost:3001',
 			changeOrigin: true
+		},
+		'/api/user/login': {
+			target: 'http://localhost:3001',
+			changeOrigin: true
 		}
 	},
 

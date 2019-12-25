@@ -68,7 +68,7 @@
 
 
 <script>
-import api from "../../helpers/api.hlpr"
+import auth from "../../helpers/auth.hlpr"
 
 export default {
     name: "Login",
@@ -83,12 +83,17 @@ export default {
     methods: {
         submit: function (e) {
             e.preventDefault()
+
             const email = this.email
             const password = this.password
+
             this.email = null
             this.password = null
 
-            console.log(email, password)
+            auth.login({email, password})
+                .then(res => {
+                    console.log(res.data)
+                })
         }
     }
 }
