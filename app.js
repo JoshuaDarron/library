@@ -35,7 +35,7 @@ app.use('*', express.static(path.join(__dirname, 'public')))
 
 
 mongoose.Promise = Promise
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Successfully connected to Mongo database'))
     .catch(err => console.error(err))
 
