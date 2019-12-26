@@ -40,6 +40,8 @@ module.exports = {
 
 
     findTypesOfBooks: (req, res) => {
+        console.log(req.body.user)
+
         const path = req.route.path
         let bookType = '';
 
@@ -49,7 +51,7 @@ module.exports = {
 
         const book = db.Book.find({
             [bookType]: true,
-            user: req.body.user
+            user: req.userData.userId
         })
         const currentPage = +req.query.page
 

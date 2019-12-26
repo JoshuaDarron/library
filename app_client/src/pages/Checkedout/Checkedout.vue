@@ -67,7 +67,6 @@ export default {
 
 	created: function() {
 		this.getCheckedoutedBooks()
-		console.log(localStorage.user)
 	},
 
 	methods: {
