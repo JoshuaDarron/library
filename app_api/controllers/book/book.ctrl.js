@@ -5,7 +5,10 @@ module.exports = {
     createBook: (req, res) => {
         db
             .Book
-            .create(req.body)
+            .create({
+                ...req.body,
+                user: req.userData.userId
+            })
             .then(resBook => res.status(201).json(resBook))
             .catch(err => console.error(err))
     },
@@ -40,8 +43,6 @@ module.exports = {
 
 
     findTypesOfBooks: (req, res) => {
-        console.log(req.body.user)
-
         const path = req.route.path
         let bookType = '';
 

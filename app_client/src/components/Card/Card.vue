@@ -69,17 +69,22 @@ export default {
 
 
 	methods: {
-		updateBook: function (book) {
+		close () {
+			this.$destroy();
+			this.$el.parentNode.removeChild(this.$el);
+		},
+
+		updateBook (book) {
 			api
 				.updateBook(
 					this.book._id,
 					book
 				)
-				.then(res => {return})
+				.then(res => this.close())
 				.catch(err => console.error(err))
 		},
 
-		createBook: function () {
+		createBook () {
 			const book = {
 				title: this.book.title,
 				authors: this.book.authors,
@@ -91,12 +96,12 @@ export default {
 			}
 
 			api.createBook(book)
-				.then(res => {return})
+				.then(res => this.close())
 				.catch(err => console.error(err))
 		},
 
 
-		onClick: function (e) {
+		onClick (e) {
 			e.preventDefault()
 
 			const button = e.currentTarget.getAttribute('value')

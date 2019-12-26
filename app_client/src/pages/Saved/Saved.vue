@@ -49,6 +49,7 @@
 import Card from "../../components/Card/Card"
 import api from "../../helpers/api.hlpr"
 
+
 export default {
 	name: "Saved",
 	components: {
@@ -70,7 +71,7 @@ export default {
 	},
 
 	methods: {
-		getSaveddBooks: function () {
+		getSaveddBooks () {
 			api.getTypesOfBooks(this.active_el, '/archived')
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
@@ -79,7 +80,7 @@ export default {
 				})
 		},
 
-		changePage: function (e) {
+		changePage (e) {
 			e.preventDefault()
 			window.scrollTo(0,0)
 			this.active_el = parseInt(e.target.text)
@@ -87,7 +88,7 @@ export default {
 			this.getSaveddBooks()
 		},
 
-		upPage: function (e) {
+		upPage (e) {
 			e.preventDefault()
 			if (this.maxPage != this.active_el) {
 				window.scrollTo(0,0)
@@ -96,7 +97,7 @@ export default {
 			}
 		},
 
-		downPage: function (e) {
+		downPage (e) {
 			e.preventDefault()
 			if (this.active_el != 1) {
 				window.scrollTo(0,0)
