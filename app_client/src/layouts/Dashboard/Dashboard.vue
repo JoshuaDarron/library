@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m2 l3 xl2">
-				<ul id="slide-out" class="sidenav sidenav-fixed">
+				<ul id="slide-out" class="sidenav sidenav-close sidenav-fixed">
 					<li>
 						<div class="user-view">
 							<a href="#user">
