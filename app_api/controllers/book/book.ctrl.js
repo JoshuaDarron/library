@@ -48,7 +48,8 @@ module.exports = {
         else bookType = 'isDeleted'
 
         const book = db.Book.find({
-            [bookType]: true
+            [bookType]: true,
+            user: req.body.user
         })
         const currentPage = +req.query.page
 

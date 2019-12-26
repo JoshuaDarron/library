@@ -60,11 +60,13 @@ export default {
 		}
 	},
 
+
 	data () {
 		return {
 			authors: this.book.authors.length > 0 ? this.book.authors.join(', ') : this.book.authors[0]
 		}
 	},
+
 
 	methods: {
 		updateBook: function (book) {
@@ -84,7 +86,8 @@ export default {
 				description: this.book.description,
 				thumbnail: this.book.thumbnail,
 				link: this.book.link,
-				isSaved: true
+				isSaved: true,
+				user: localStorage.user
 			}
 
 			api.createBook(book)
@@ -92,9 +95,10 @@ export default {
 				.catch(err => console.error(err))
 		},
 
+
 		onClick: function (e) {
 			e.preventDefault()
-			
+
 			const button = e.currentTarget.getAttribute('value')
 			if (button === 'bookmark') {
 				this.updateBook({

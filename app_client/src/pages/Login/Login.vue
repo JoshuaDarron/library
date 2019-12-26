@@ -93,7 +93,10 @@ export default {
 
 
             auth.login({email, password})
-                .then(res => localStorage.setItem('token', res.data.token))
+                .then(res => {
+                    localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('user', res.data.userId)
+                })
                 .then(() => window.location.href = "/")
                 .catch(err => console.error(err))
         }

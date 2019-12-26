@@ -10,7 +10,12 @@ const BookSchema = new Schema({
 	title: String,
 	isSaved: Boolean,
 	isDeleted: Boolean,
-	isBookmarked: Boolean
+	isBookmarked: Boolean,
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: true
+	}
 })
 
 
