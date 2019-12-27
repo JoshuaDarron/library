@@ -60,6 +60,9 @@ module.exports = {
             book
                 .skip(5 * (currentPage - 1))
                 .limit(5)
+                .sort({
+                    updated_at: -1
+                })
         }
 
         book
