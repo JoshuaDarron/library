@@ -9,7 +9,13 @@ import History from '@/pages/History/History'
 import Login from '@/pages/Login/Login'
 import Signup from '@/pages/Signup/Signup'
 
+function guard(to, from, next) {
+	if (localStorage.token) next()
+	else next('/login')
+}
+
 Vue.use(Router)
+
 
 export default new Router({
 	mode: 'history',
@@ -17,27 +23,32 @@ export default new Router({
 		{
 			path: '/',
 			name: 'Search',
-			component: Search
+			component: Search,
+			beforeEnter: guard
 		},
 		{
 			path: '/home',
 			name: 'Home',
-			component: Home
+			component: Home,
+			beforeEnter: guard
 		},
 		{
 			path: '/saved',
 			name: 'Saved',
-			component: Saved
+			component: Saved,
+			beforeEnter: guard
 		},
 		{
 			path: '/checkedout',
 			name: 'Checkedout',
-			component: Checkedout
+			component: Checkedout,
+			beforeEnter: guard
 		},
 		{
 			path: '/history',
 			name: 'History',
-			component: History
+			component: History,
+			beforeEnter: guard
 		},
 		{
 			path: '/login',
