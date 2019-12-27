@@ -77,6 +77,7 @@ export default {
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
 				})
+				.catch(err => window.location.href = "/login")
 		},
 
 		changePage: function (e) {
