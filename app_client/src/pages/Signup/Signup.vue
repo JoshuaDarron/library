@@ -103,11 +103,14 @@ export default {
             this.email = null
             this.password = null
 
-            auth.signup({firstName, lastName, email, password})
-                .then(res => {
-                    console.log(res)
-                    localStorage.setItem('token', res.token);
+            auth.signup ({ firstName, lastName, email, password })
+                .then (res => {
+                    auth.login ({ email, password })
+                        .then (res => localStorage.setItem('token', res.data.token))
+                        .then (() => window.location.href = "/")
+                        .catch (err => console.error(err))
                 })
+                .catch(err => console.error(err))
         }
     }
 }

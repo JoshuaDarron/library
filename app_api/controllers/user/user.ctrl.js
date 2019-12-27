@@ -5,10 +5,11 @@ const User = require('../../models/user/User.model')
 
 
 exports.createUser = (req, res, next) => {
-    console.log(req.body)
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 email: req.body.email,
                 password: hash,
             })
@@ -54,10 +55,11 @@ exports.getUser = (req, res, next) => {
                 email: fetchedUser.email,
                 userId: fetchedUser._id
             },
-                process.env.JWT_KEY,
-                {
-                    expiresIn: '1h'
-                })
+                process.env.JWT_KEY
+                // {
+                //     expiresIn: '1h'
+                // }
+                )
 
             res.status(200).json({
                 token,
