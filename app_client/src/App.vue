@@ -9,16 +9,21 @@
 						</i>
 					</a>
 					<ul id="nav-mobile" class="right">
-						<li>
+						<li v-if="!token">
 							<a href="/login">
 								Login
 							</a>
 						</li>
-						<li>
+						<li v-if="!token">
 							<a href="/signup">
 								Signup
-								</a>
-							</li>
+							</a>
+						</li>
+						<li v-if="token">
+							<a href="/login" v-on:click="onSignout">
+								Logout
+							</a>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -49,7 +54,14 @@ export default {
 
 	data () {
 		return {
-			path: window.location.pathname
+			path: window.location.pathname,
+			token: localStorage.token || null
+		}
+	},
+
+	methods: {
+		onSignout () {
+			localStorage.removeItem('token')
 		}
 	}
 }

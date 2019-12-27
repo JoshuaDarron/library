@@ -55,11 +55,10 @@ exports.getUser = (req, res, next) => {
                 email: fetchedUser.email,
                 userId: fetchedUser._id
             },
-                process.env.JWT_KEY
-                // {
-                //     expiresIn: '1h'
-                // }
-                )
+                process.env.JWT_KEY,
+                {
+                    expiresIn: '48h'
+                })
 
             res.status(200).json({
                 token,
