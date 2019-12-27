@@ -1,6 +1,13 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
+const schemaOptions = {
+	timestamps: { 
+		createdAt: 'created_at', 
+		updatedAt: 'updated_at' 
+	}
+}
+
 
 const BookSchema = new Schema({
 	authors: [String],
@@ -16,7 +23,7 @@ const BookSchema = new Schema({
 		ref: 'User',
 		required: true
 	}
-})
+}, schemaOptions)
 
 
 const Book = mongoose.model("Book", BookSchema)

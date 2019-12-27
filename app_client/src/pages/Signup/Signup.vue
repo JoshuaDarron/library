@@ -90,7 +90,7 @@ export default {
     },
 
     methods: {
-        submit: function (e) {
+        submit (e) {
             e.preventDefault()
 
             const firstName = this.firstName
