@@ -30,7 +30,7 @@
 		</div>
 
 		<Dashboard v-if="path != '/login' && path != '/signup'" />
-		<router-view v-if="path == '/login' || path == '/signup'"/>
+		<router-view v-else />
 	</div>
 </template>
 
