@@ -96,7 +96,11 @@ module.exports = {
             .Book
             .findOne({ _id: req.params.id })
             .then(resBook => res.json(resBook))
-            .catch(err => console.error(err))
+            .catch(err => {
+                res.status(500).json({
+                    message: 'Finding one book failed'
+                })
+            })
     },
 
 
@@ -105,7 +109,11 @@ module.exports = {
             { _id: req.params.id },
             req.body)
             .then(resBook => res.json(resBook))
-            .catch(err => console.error(err))
+            .catch(err => {
+                res.status(500).json({
+                    message: 'Update book failed'
+                })
+            })
     },
 
 
@@ -114,6 +122,10 @@ module.exports = {
             .Book
             .remove({ _id: req.params.id })
             .then(resBook => res.json({_id: req.params.id, message: "Deletion successfull."}))
-            .catch(err => console.error(err))
+            .catch(err => {
+                res.status(500).json({
+                    message: 'Something went wrong'
+                })
+            })
     }
 }
