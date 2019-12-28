@@ -10,7 +10,7 @@
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<div v-for="book in books" :key="book.id">
-					<Card :book="book" :color="color" />
+					<Card :book="book" :color="color" v-on:card-remove="updateBooks" />
 				</div>
 
 				<ul v-if="maxCount > 5" class="pagination center-align">
@@ -78,6 +78,11 @@ export default {
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
 				})
+		},
+
+		updateBooks (book) {
+			this.books.splice(this.books.indexOf(book), 0)
+			console.log(this.books)
 		},
 
 		changePage (e) {

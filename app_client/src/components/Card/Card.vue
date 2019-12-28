@@ -128,6 +128,7 @@ export default {
 					isSaved: false
 				})
 			}
+			this.$emit('card-remove', this.book);
 		}
 	}
 }
