@@ -3,14 +3,22 @@ const db = require('../../models')
 
 module.exports = {
     createBook: (req, res) => {
-        db
-            .Book
-            .create({
-                ...req.body,
-                user: req.userData.userId
-            })
+
+        const book = new db.Book({
+            ...req.body,
+            user: req.userData.userId
+        })
+
+        console.log(book)
+
+        book
+            .save()
             .then(resBook => res.status(201).json(resBook))
-            .catch(err => console.error(err))
+            .catch(err => {
+                res.status(500).json({
+                    message: 'Creating a post failed'
+                })
+            })
     },
 
 
