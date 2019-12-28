@@ -25,7 +25,7 @@
 					<li 
 						v-for="n in maxPage" :key="n" 
 						v-on:click="changePage"
-						:class="active_el === n ? 'active green' : 'waves-effect'" >
+						:class="page === n ? 'active green' : 'waves-effect'" >
 						<a href="#">
 							{{ n }}
 						</a>
@@ -61,7 +61,7 @@ export default {
 			books: [],
 			maxCount: 1,
 			maxPage: 1,
-			active_el: 1,
+			page: 1,
 			color: 'green lighten-5'
 		}
 	},
@@ -72,7 +72,7 @@ export default {
 
 	methods: {
 		getSaveddBooks () {
-			api.getTypesOfBooks(this.active_el, '/archived')
+			api.getTypesOfBooks(this.page, '/archived')
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
@@ -81,32 +81,32 @@ export default {
 		},
 
 		updateBooks (book) {
-			this.books.splice(this.books.indexOf(book), 0)
-			console.log(this.books)
+			this.books.splice(this.books.indexOf(book), 1)
+			if (!this.books.length) this.downPage()
 		},
 
 		changePage (e) {
 			e.preventDefault()
 			window.scrollTo(0,0)
-			this.active_el = parseInt(e.target.text)
+			this.page = parseInt(e.target.text)
 
 			this.getSaveddBooks()
 		},
 
 		upPage (e) {
 			e.preventDefault()
-			if (this.maxPage != this.active_el) {
+			if (this.maxPage != this.page) {
 				window.scrollTo(0,0)
-				++this.active_el
+				++this.page
 				this.getSaveddBooks()
 			}
 		},
 
 		downPage (e) {
-			e.preventDefault()
-			if (this.active_el != 1) {
+			if (e) e.preventDefault()
+			if (this.page != 1) {
 				window.scrollTo(0,0)
-				--this.active_el
+				--this.page
 				this.getSaveddBooks()
 			}
 		}
