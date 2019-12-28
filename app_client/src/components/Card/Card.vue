@@ -114,12 +114,13 @@ export default {
 			} else if (button === 'archive') {
 				if (!this.book._id) {
 					this.createBook()
+				} else {
+					this.updateBook({
+						isDeleted: false,
+						isBookmarked: false,
+						isSaved: true
+					})
 				}
-				this.updateBook({
-					isDeleted: false,
-					isBookmarked: false,
-					isSaved: true
-				})
 			} else {
 				this.updateBook({
 					isDeleted: true,

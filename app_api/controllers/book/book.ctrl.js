@@ -9,14 +9,12 @@ module.exports = {
             user: req.userData.userId
         })
 
-        console.log(book)
-
         book
             .save()
             .then(resBook => res.status(201).json(resBook))
             .catch(err => {
                 res.status(500).json({
-                    message: 'Creating a post failed'
+                    message: 'Saving a book failed'
                 })
             })
     },
