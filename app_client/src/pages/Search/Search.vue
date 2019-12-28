@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col m12 xl7">
             <div v-for="book in books" :key="book.id">
-                <Card :book="book" :color="color" />
+                <Card :book="book" :color="color" v-on:card-remove="updateBooks" />
             </div>
         </div>
     </div>
@@ -48,7 +48,12 @@ export default {
                 .then((res) => {
                     this.books = res.data
                 })
-        }
+        },
+
+		updateBooks (book) {
+			this.books.splice(this.books.indexOf(book), 1)
+			if (!this.books.length) this.downPage()
+		}
     }
 }
 </script>

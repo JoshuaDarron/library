@@ -10,7 +10,7 @@
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<div v-for="book in books" :key="book.id">
-					<Card :book="book" :color="color" />
+					<Card :book="book" :color="color" v-on:card-remove="updateBooks" />
 				</div>
 
 				<ul v-if="maxCount > 5" class="pagination center-align">
@@ -80,6 +80,11 @@ export default {
 				.catch(err => console.error(err))
 		},
 
+		updateBooks (book) {
+			this.books.splice(this.books.indexOf(book), 1)
+			if (!this.books.length) this.downPage()
+		},
+
 		changePage: function (e) {
 			e.preventDefault()
 			window.scrollTo(0, 0)
@@ -97,7 +102,7 @@ export default {
 		},
 
 		downPage: function (e) {
-			e.preventDefault()
+			if (e) e.preventDefault()
 			if (this.active_el != 1) {
 				window.scrollTo(0,0)
 				--this.active_el

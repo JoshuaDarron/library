@@ -34,7 +34,7 @@
 							</a>
 						</li>
 					</router-link>
-					<router-link to="/home">
+					<!-- <router-link to="/home">
 						<li>
 							<a class="waves-effect" href="#">
 								<i class="material-icons">
@@ -43,7 +43,7 @@
 								Home
 							</a>
 						</li>
-					</router-link>
+					</router-link> -->
 					<router-link to="/checkedout">
 						<li>
 							<a class="waves-effect" href="#">
