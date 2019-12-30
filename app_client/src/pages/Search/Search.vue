@@ -45,14 +45,13 @@ export default {
 
             googleApiHlpr
                 .searchGoogleInBooks(query)
-                .then((res) => {
-                    this.books = res.data
-                })
+                .then((res) => this.books = res.data)
         },
 
 		updateBooks (id) {
-            console.log(id)
-			this.books.splice(this.books.indexOf(book), 1)
+            for (let book in this.books) {
+                if (book.id == id) this.books.splice(this.books.indexOf(book), 1)
+            }
 			if (!this.books.length) this.downPage()
 		}
     }

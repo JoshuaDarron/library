@@ -128,7 +128,7 @@ export default {
 					isSaved: false
 				})
 			}
-			this.$emit('card-remove', this.book);
+			this.$emit('card-remove', this.book.id || this.book._id);
 		}
 	}
 }
