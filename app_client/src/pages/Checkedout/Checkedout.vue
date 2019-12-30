@@ -80,8 +80,10 @@ export default {
 				})
 		},
 
-		updateBooks (book) {
-			this.books.splice(this.books.indexOf(book), 1)
+		updateBooks (id) {
+            for (let book of this.books) {
+                if (book._id === id) this.books.splice(this.books.indexOf(book), 1)
+            }
 			if (!this.books.length) this.downPage()
 		},
 

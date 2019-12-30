@@ -49,8 +49,8 @@ export default {
         },
 
 		updateBooks (id) {
-            for (let book in this.books) {
-                if (book.id == id) this.books.splice(this.books.indexOf(book), 1)
+            for (let book of this.books) {
+                if (book.id === id) this.books.splice(this.books.indexOf(book), 1)
             }
 			if (!this.books.length) this.downPage()
 		}
