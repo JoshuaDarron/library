@@ -50,7 +50,8 @@ export default {
                 })
         },
 
-		updateBooks (book) {
+		updateBooks (id) {
+            console.log(id)
 			this.books.splice(this.books.indexOf(book), 1)
 			if (!this.books.length) this.downPage()
 		}

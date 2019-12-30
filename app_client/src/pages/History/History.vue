@@ -25,7 +25,7 @@
 					<li 
 						v-for="n in maxPage" :key="n" 
 						v-on:click="changePage"
-						:class="active_el === n ? 'active' : 'waves-effect'" >
+						:class="page === n ? 'active' : 'waves-effect'" >
 						<a href="#">
 							{{ n }}
 						</a>
@@ -60,7 +60,7 @@ export default {
 			books: [],
 			maxCount: 1,
 			maxPage: 1,
-			active_el: 1,
+			page: 1,
 			color: '#ffebee red lighten-5'
 		}
 	},
@@ -71,7 +71,7 @@ export default {
 
 	methods: {
 		getDeletedBooks: function () {
-			api.getTypesOfBooks(this.active_el, '/deleted')
+			api.getTypesOfBooks(this.page, '/deleted')
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
@@ -88,24 +88,24 @@ export default {
 		changePage: function (e) {
 			e.preventDefault()
 			window.scrollTo(0, 0)
-			this.active_el = parseInt(e.target.text)
+			this.page = parseInt(e.target.text)
 			this.getDeletedBooks()
 		},
 
 		upPage: function (e) {
 			e.preventDefault()
-			if (this.maxPage != this.active_el) {
+			if (this.maxPage != this.page) {
 				window.scrollTo(0,0)
-				++this.active_el
+				++this.page
 				this.getDeletedBooks()
 			}
 		},
 
 		downPage: function (e) {
 			if (e) e.preventDefault()
-			if (this.active_el != 1) {
+			if (this.page != 1) {
 				window.scrollTo(0,0)
-				--this.active_el
+				--this.page
 				this.getDeletedBooks()
 			}
 		}
