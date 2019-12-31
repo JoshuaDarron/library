@@ -84,6 +84,7 @@ export default {
             for (let book of this.books) {
                 if (book._id === id) {
 					this.books.splice(this.books.indexOf(book), 1)
+					
 				}
 			}
 			console.log(this.books.length)
