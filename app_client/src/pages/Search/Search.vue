@@ -49,11 +49,10 @@ export default {
         },
 
 		updateBooks (id) {
-            for (let book of this.books) {
-                if (book.id === id) this.books.splice(this.books.indexOf(book), 1)
-            }
+			const removeIndex = this.books.map(function(book) { return book.id; }).indexOf(id)
+			~removeIndex && array.splice(removeIndex, 1)
 			if (!this.books.length) this.downPage()
-		}
+		},
     }
 }
 </script>
