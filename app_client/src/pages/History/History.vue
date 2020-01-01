@@ -81,7 +81,7 @@ export default {
 		},
 
 		updateBooks (id) {
-			const removeIndex = this.books.map(function(book) { return book._id; }).indexOf(id)
+			const removeIndex = this.books.map(function(book) { return book.id; }).indexOf(id)
 			~removeIndex && this.books.splice(removeIndex, 1)
 			if (!this.books.length) this.downPage()
 		},
