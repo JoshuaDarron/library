@@ -1,6 +1,11 @@
 import axios from 'axios'
 const ROUTE = '/api/user'
 
+const headers = {
+    headers: {
+        authorization: `Bearer: ${localStorage.token}`
+    }
+}
 
 export default {
     /**
@@ -14,5 +19,9 @@ export default {
      */
     signup(user) {
         return axios.post(`${ROUTE}/signup`, user)
+    },
+
+    info(user) {
+        return axios.get(`${ROUTE}/info`, headers)
     }
 }

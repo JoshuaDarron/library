@@ -60,7 +60,6 @@ export default {
 		}
 	},
 
-
 	data () {
 		return {
 			authors: this.book.authors ? this.book.authors.join(', ') : 'Anonymous'

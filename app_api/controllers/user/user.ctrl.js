@@ -70,11 +70,25 @@ exports.getUser = (req, res, next) => {
         }))
 }
 
+
 exports.getUserInfo = (req, res) => {
-    res.status(200).json({
-        message: 'Successfully retrieved user info',
-        userInfo: req.userData
+
+    User.findOne({ 
+        _id: req.userData.userId 
     })
+    .then(resUser => {
+        const info = {
+            firstName: resUser.firstName,
+            lastName: resUser.lastName,
+            ...req.userData
+        }
+
+        res.status(200).json({
+            message: 'Successfully retrieved user info',
+            userInfo: info
+        })
+    })
+    .catch(err => console.error(err))
 }
 
 

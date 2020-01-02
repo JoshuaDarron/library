@@ -11,12 +11,12 @@
 							</a>
 							<a href="#name">
 								<span class="black-text name">
-									John Doe
+									{{`${user.firstName} ${user.lastName}`}}
 								</span>
 							</a>
 							<a href="#email">
 								<span class="black-text email">
-									jdandturk@gmail.com
+									{{user.email}}
 								</span>
 							</a>
 						</div>
@@ -96,8 +96,27 @@
 
 
 <script>
+import auth from "../../helpers/auth.hlpr"
+
 export default {
-	name: 'Dashboard'
+	name: 'Dashboard',
+
+	data () {
+		return {
+			user: {
+				email: null,
+				firstName: null,
+				lastName: null
+			}
+		}
+	},
+
+	created () {
+		auth.info()
+			.then(res => {
+				this.user = res.data.userInfo
+			})
+	}
 }
 </script>
 
