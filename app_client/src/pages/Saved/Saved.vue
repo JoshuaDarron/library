@@ -10,7 +10,7 @@
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<div v-for="book in books" :key="book.id">
-					<Card :book="book" :color="color" v-on:card-remove="updateBooks" />
+					<Card :book="book" :color="color" v-on:card-remove="updateBooks" :key="book._id" />
 				</div>
 
 				<ul v-if="maxCount > 5" class="pagination center-align">
@@ -82,9 +82,7 @@ export default {
 
 		updateBooks (id) {
 			const removeIndex = this.books.map(book => book._id).indexOf(id)
-			console.log(removeIndex)
 			~removeIndex && this.books.splice(removeIndex, 1)
-			console.log(this.books)
 			if (!this.books.length) this.downPage()
 		},
 
