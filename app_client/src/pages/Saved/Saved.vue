@@ -84,6 +84,7 @@ export default {
 			const removeIndex = this.books.map(book => book._id).indexOf(id)
 			~removeIndex && this.books.splice(removeIndex, 1)
 			if (!this.books.length) this.downPage()
+			else if (this.books.length < 5) this.getSaveddBooks()
 		},
 
 		changePage (e) {
