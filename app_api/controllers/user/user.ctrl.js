@@ -70,6 +70,13 @@ exports.getUser = (req, res, next) => {
         }))
 }
 
+exports.getUserInfo = (req, res) => {
+    res.status(200).json({
+        message: 'Successfully retrieved user info',
+        userInfo: req.userData
+    })
+}
+
 
 exports.deleteUser = (req, res) => {
     User
