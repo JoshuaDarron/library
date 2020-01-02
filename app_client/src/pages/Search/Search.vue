@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col m12 xl7">
             <div v-for="book in books" :key="book.id">
-                <Card :book="book" :color="color" v-on:card-remove="updateBooks" />
+                <Card :book="book" :color="color" v-on:card-remove="updateBooks" :key="book.id"/>
             </div>
         </div>
     </div>
@@ -49,8 +49,8 @@ export default {
         },
 
 		updateBooks (id) {
-			const removeIndex = this.books.map(function(book) { return book.id; }).indexOf(id)
-			~removeIndex && array.splice(removeIndex, 1)
+			const removeIndex = this.books.map(book => book.id).indexOf(id)
+			~removeIndex && this.books.splice(removeIndex, 1)
 			if (!this.books.length) this.downPage()
 		},
     }
