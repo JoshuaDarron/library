@@ -70,7 +70,7 @@ export default {
 	},
 
 	methods: {
-		getDeletedBooks: function () {
+		getDeletedBooks () {
 			api.getTypesOfBooks(this.page, '/deleted')
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
@@ -87,14 +87,14 @@ export default {
 			else if (this.books.length < 5) this.getDeletedBooks()
 		},
 
-		changePage: function (e) {
+		changePage (e) {
 			e.preventDefault()
 			window.scrollTo(0, 0)
 			this.page = parseInt(e.target.text)
 			this.getDeletedBooks()
 		},
 
-		upPage: function (e) {
+		upPage (e) {
 			e.preventDefault()
 			if (this.maxPage != this.page) {
 				window.scrollTo(0,0)
@@ -103,7 +103,7 @@ export default {
 			}
 		},
 
-		downPage: function (e) {
+		downPage (e) {
 			if (e) e.preventDefault()
 			if (this.page != 1) {
 				window.scrollTo(0,0)

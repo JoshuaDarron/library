@@ -56,6 +56,11 @@ export default new Router({
 			component: Login
 		},
 		{
+			path: '/*',
+			name: 'Catch',
+			component: Login
+		},
+		{
 			path: '/signup',
 			name: 'Signup',
 			component: Signup
