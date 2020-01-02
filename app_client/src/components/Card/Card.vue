@@ -63,15 +63,11 @@ export default {
 
 	data () {
 		return {
-			authors: this.book.authors.length > 0 ? this.book.authors.join(', ') : this.book.authors[0]
+			authors: this.book.authors ? this.book.authors.join(', ') : 'Anonymous'
 		}
 	},
 
-
 	methods: {
-		close () {
-			this.$destroy()
-		},
 
 		updateBook (book) {
 			api
@@ -79,7 +75,7 @@ export default {
 					this.book._id,
 					book
 				)
-				.then(res => this.close())
+				.then(res => {})
 				.catch(err => console.error(err))
 		},
 
@@ -95,7 +91,7 @@ export default {
 			}
 
 			api.createBook(book)
-				.then(res => this.close())
+				.then(res => {})
 				.catch(err => console.error(err))
 		},
 
