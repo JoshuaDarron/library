@@ -72,7 +72,6 @@ exports.getUser = (req, res, next) => {
 
 
 exports.getUserInfo = (req, res) => {
-
     User.findOne({ 
         _id: req.userData.userId 
     })
@@ -91,6 +90,16 @@ exports.getUserInfo = (req, res) => {
     .catch(err => console.error(err))
 }
 
+
+exports.updateUser = (req, res) => {
+    const newUser = new User({
+        _id: req.params.id,
+        title: req.body.title,
+        content: req.body.content,
+        imagePath: imagePath,
+        creator: req.userData.userId
+    })
+}
 
 exports.deleteUser = (req, res) => {
     User
