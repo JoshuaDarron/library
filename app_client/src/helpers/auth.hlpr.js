@@ -22,6 +22,6 @@ export default {
     },
 
     info(user) {
-        return axios.get(`${ROUTE}/info`, headers)
+        return axios.get(`${ROUTE}/`, headers)
     }
 }

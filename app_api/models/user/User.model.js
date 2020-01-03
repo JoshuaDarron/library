@@ -22,9 +22,9 @@ const userSchema = mongoose.Schema({
         required: true
     },
 
-    image: {
-        type: String,
-        required: true
+    image: { 
+        data: Buffer, 
+        contentType: String
     }
 })
 

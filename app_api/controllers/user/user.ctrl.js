@@ -87,18 +87,35 @@ exports.getUserInfo = (req, res) => {
             userInfo: info
         })
     })
-    .catch(err => console.error(err))
+        .catch(err => res.status(500).json({
+            message: 'Something went wrong',
+            error: err
+        }))
 }
 
 
 exports.updateUser = (req, res) => {
     const newUser = new User({
-        _id: req.params.id,
-        title: req.body.title,
-        content: req.body.content,
-        imagePath: imagePath,
-        creator: req.userData.userId
+        _id: req.userData.userId,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email
     })
+
+    User.updateOne(newUser)
+    .then(resUser => {
+        res.status(200).json({
+            message: 'Successfully updated document',
+            user: resUser
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            message: 'Something went wrong',
+            error: err
+        })
+    })
+
 }
 
 exports.deleteUser = (req, res) => {
