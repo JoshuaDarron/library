@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const fs = require('fs')
 
 const User = require('../../models/user/User.model')
 
@@ -79,6 +80,7 @@ exports.getUserInfo = (req, res) => {
         const info = {
             firstName: resUser.firstName,
             lastName: resUser.lastName,
+            image: resUser.image,
             ...req.userData
         }
 
@@ -95,12 +97,17 @@ exports.getUserInfo = (req, res) => {
 
 
 exports.updateUser = (req, res) => {
+    console.log(req.file)
+
     const newUser = new User({
         _id: req.userData.userId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email
     })
+
+    newUser.image.data = fs.readFileSync(req.file.path)
+    newUser.image.contentType = req.file.mimetype
 
     User.updateOne(newUser)
     .then(resUser => {
@@ -115,8 +122,8 @@ exports.updateUser = (req, res) => {
             error: err
         })
     })
-
 }
+
 
 exports.deleteUser = (req, res) => {
     User
