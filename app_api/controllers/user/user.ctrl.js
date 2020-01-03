@@ -89,15 +89,14 @@ exports.getUserInfo = (req, res) => {
             userInfo: info
         })
     })
-        .catch(err => res.status(500).json({
-            message: 'Something went wrong',
-            error: err
-        }))
+    .catch(err => res.status(500).json({
+        message: 'Something went wrong',
+        error: err
+    }))
 }
 
 
 exports.updateUser = (req, res) => {
-    console.log(req.file)
 
     const newUser = new User({
         _id: req.userData.userId,
@@ -106,8 +105,7 @@ exports.updateUser = (req, res) => {
         email: req.body.email
     })
 
-    newUser.image.data = fs.readFileSync(req.file.path)
-    newUser.image.contentType = req.file.mimetype
+    newUser.image = fs.readFileSync(req.file.path)
 
     User.updateOne(newUser)
     .then(resUser => {
