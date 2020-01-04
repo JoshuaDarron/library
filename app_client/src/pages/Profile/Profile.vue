@@ -4,16 +4,25 @@
 		<div class="row">
             <form @submit.prevent="submit">
                 <label for="first-name">First Name</label>
-                <input class="validate" name="first-name" type="text" v-model="user.firstName" />
+                <input class="validate profile-input" name="first-name" type="text" v-model="user.firstName" />
 
                 <label for="last-name">Last Name</label>
-                <input class="validate" name="last-name" type="text" v-model="user.lastName" />
+                <input class="validate profile-input" name="last-name" type="text" v-model="user.lastName" />
 
                 <label for="email">Email</label>
-                <input class="validate" name="email" type="email" v-model="user.email" />
+                <input class="validate profile-input" name="email" type="email" v-model="user.email" />
+
+                <div class="file-field input-field">
+                    <div class="btn  waves-light blue lighten-5 black-text submit">
+                        <span>File</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
 
                 <button type="submit" class="waves-effect waves-light btn blue lighten-5 black-text submit">
-                    <i class="material-icons left">account_circle</i>
                     Save
                 </button>
             </form>
@@ -49,19 +58,25 @@ export default {
             const email = this.email
             const password = this.password
 
+            this.user = {
+                firstName: null,
+                lastName: null,
+                email: null,
+                image: null
+            }
+
             this.firstName = null
             this.lastName = null
             this.email = null
-            this.password = null
 
-            auth.signup ({ firstName, lastName, email, password })
-                .then (res => {
-                    auth.login ({ email, password })
-                        .then (res => localStorage.setItem('token', res.data.token))
-                        .then (() => window.location.href = "/")
-                        .catch (err => console.error(err))
-                })
-                .catch(err => console.error(err))
+            // auth.signup ({ firstName, lastName, email, password })
+            //     .then (res => {
+            //         auth.login ({ email, password })
+            //             .then (res => localStorage.setItem('token', res.data.token))
+            //             .then (() => window.location.href = "/")
+            //             .catch (err => console.error(err))
+            //     })
+            //     .catch(err => console.error(err))
         }
     }
 }

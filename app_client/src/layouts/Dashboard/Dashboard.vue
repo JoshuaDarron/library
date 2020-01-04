@@ -6,20 +6,20 @@
 				<ul id="slide-out" class="sidenav sidenav-close sidenav-fixed">
 					<li>
 						<div class="user-view">
-							<a href="/profile">
+							<router-link to="/profile">
 								<!-- <img class="circle" src="http://lorempixel.com/output/nightlife-q-g-640-480-4.jpg"> -->
 								<img class="circle" :src="user.image.data">
-							</a>
-							<a href="/profile">
+							</router-link>
+							<router-link to="/profile">
 								<span class="black-text name">
 									{{`${user.firstName} ${user.lastName}`}}
 								</span>
-							</a>
-							<a href="/profile">
+							</router-link>
+							<router-link to="/profile">
 								<span class="black-text email">
 									{{user.email}}
 								</span>
-							</a>
+							</router-link>
 						</div>
 					</li>
 					<li>

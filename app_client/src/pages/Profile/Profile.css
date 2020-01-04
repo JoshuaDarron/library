@@ -2,7 +2,7 @@ form {
     margin-top: 50px;
 }
 
-input {
+.profile-input {
     border: .5px solid #e0e0e0 !important;
     max-width: 400px;
     box-shadow: none !important;
