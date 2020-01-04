@@ -120,8 +120,8 @@ export default {
 			.then(res => {
 				this.user = res.data.userInfo
 				
-				var base64Flag = 'data:image;base64,'
-				var imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
+				const base64Flag = 'data:image;base64,'
+				const imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
 
 				this.user.image.data = base64Flag + imageStr
 			})

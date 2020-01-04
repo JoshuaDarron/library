@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
+const path = require('path')
 
 const User = require('../../models/user/User.model')
 
@@ -84,8 +85,6 @@ exports.getUserInfo = (req, res) => {
             ...req.userData
         }
 
-        // console.log(resUser.image)
-
         res.status(200).json({
             message: 'Successfully retrieved user info',
             userInfo: info
@@ -109,6 +108,16 @@ exports.updateUser = (req, res) => {
 
     newUser.image.data = fs.readFileSync(req.file.path)
     newUser.image.contentType = req.file.mimetype
+
+    fs.readdir('./images', (err, files) => {
+        if (err) throw err
+
+        for (const file of files) {
+            fs.unlink(path.join('./images', file), err => {
+                if (err) throw err
+            })
+        }
+    })
 
     User.updateOne(newUser)
     .then(resUser => {
