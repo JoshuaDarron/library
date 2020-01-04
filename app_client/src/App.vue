@@ -29,7 +29,7 @@
 			</nav>
 		</div>
 
-		<Dashboard v-if="path =='/' || path == '/checkedout'  || path == '/saved'  || path == '/history'" />
+		<Dashboard v-if="path =='/' || path == '/checkedout'  || path == '/saved'  || path == '/history' || path == '/profile'" />
 		<router-view v-else />
 	</div>
 </template>

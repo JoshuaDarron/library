@@ -91,8 +91,6 @@ export default {
 
     methods: {
         submit (e) {
-            e.preventDefault()
-
             const firstName = this.firstName
             const lastName = this.lastName
             const email = this.email

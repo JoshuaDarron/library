@@ -6,16 +6,16 @@
 				<ul id="slide-out" class="sidenav sidenav-close sidenav-fixed">
 					<li>
 						<div class="user-view">
-							<a href="#user">
+							<a href="/profile">
 								<!-- <img class="circle" src="http://lorempixel.com/output/nightlife-q-g-640-480-4.jpg"> -->
 								<img class="circle" :src="user.image.data">
 							</a>
-							<a href="#name">
+							<a href="/profile">
 								<span class="black-text name">
 									{{`${user.firstName} ${user.lastName}`}}
 								</span>
 							</a>
-							<a href="#email">
+							<a href="/profile">
 								<span class="black-text email">
 									{{user.email}}
 								</span>

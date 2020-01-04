@@ -8,6 +8,7 @@ import Checkedout from '@/pages/Checkedout/Checkedout'
 import History from '@/pages/History/History'
 import Login from '@/pages/Login/Login'
 import Signup from '@/pages/Signup/Signup'
+import Profile from '@/pages/Profile/Profile'
 
 function guard(to, from, next) {
 	if (localStorage.token) next()
@@ -51,19 +52,25 @@ export default new Router({
 			beforeEnter: guard
 		},
 		{
-			path: '/login',
-			name: 'Login',
-			component: Login
+			path: '/profile',
+			name: 'Profile',
+			component: Profile,
+			beforeEnter: guard
 		},
 		{
-			path: '/*',
-			name: 'Catch',
+			path: '/login',
+			name: 'Login',
 			component: Login
 		},
 		{
 			path: '/signup',
 			name: 'Signup',
 			component: Signup
+		},
+		{
+			path: '/*',
+			name: 'Catch',
+			component: Login
 		}
 	]
 })
