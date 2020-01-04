@@ -105,7 +105,10 @@ exports.updateUser = (req, res) => {
         email: req.body.email
     })
 
-    newUser.image = fs.readFileSync(req.file.path)
+    console.log(req.file)
+
+    newUser.image.data = fs.readFileSync(req.file.path)
+    newUser.image.contentType = req.file.mimetype
 
     User.updateOne(newUser)
     .then(resUser => {

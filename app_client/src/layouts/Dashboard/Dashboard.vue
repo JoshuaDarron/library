@@ -115,7 +115,7 @@ export default {
 		auth.info()
 			.then(res => {
 				this.user = res.data.userInfo
-				// console.log(typeof res.data.userInfo.image.data)
+				console.log(res.data.userInfo.image.data.data)
 			})
 	}
 }

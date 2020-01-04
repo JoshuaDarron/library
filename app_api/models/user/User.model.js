@@ -22,7 +22,10 @@ const userSchema = mongoose.Schema({
         required: true
     },
 
-    image: Buffer
+    image: { 
+        data: Buffer, 
+        contentType: String 
+    }
 })
 
 
