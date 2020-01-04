@@ -8,22 +8,10 @@ form {
     box-shadow: none !important;
     border-radius: 100px !important;
     background-color: #fff !important;
-    text-indent: 40px;
+    text-indent: 20px;
     box-sizing: inherit;
     margin-top: 10px !important;
     margin-bottom: 10px !important;
-}
-
-input[type="text"] {
-    background: url('~@/assets/images/account.png') no-repeat scroll 15px 14px;
-}
-
-input[type="email"] {
-    background: url('~@/assets/images/email.png') no-repeat scroll 15px 14px;
-}
-
-input[type="password"] {
-    background: url('~@/assets/images/lock.png') no-repeat scroll 15px 14px;
 }
 
 label {
@@ -32,6 +20,16 @@ label {
     font-size: 20px;
 }
 
+.file-button {
+    border-radius: 100px !important;
+}
+
+.file-name {
+    box-shadow: none !important;
+    border-bottom: .5px solid #fff !important;
+}
+
 .submit {
     border-radius: 100px !important;
+    margin-top: 50px;
 }

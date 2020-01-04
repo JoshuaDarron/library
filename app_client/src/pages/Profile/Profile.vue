@@ -13,16 +13,16 @@
                 <input class="validate profile-input" name="email" type="email" v-model="user.email" />
 
                 <div class="file-field input-field">
-                    <div class="btn  waves-light blue lighten-5 black-text submit">
-                        <span>File</span>
+                    <div class="btn waves-light blue lighten-5 black-text file-button">
+                        <span>Image</span>
                         <input type="file">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                        <input class="file-path validate white-text file-name" type="text">
                     </div>
                 </div>
 
-                <button type="submit" class="waves-effect waves-light btn blue lighten-5 black-text submit">
+                <button type="submit" class="waves-effect waves-light btn blue darken-3 submit">
                     Save
                 </button>
             </form>
@@ -53,21 +53,24 @@ export default {
 
     methods: {
         submit (e) {
-            const firstName = this.firstName
-            const lastName = this.lastName
-            const email = this.email
-            const password = this.password
+            const user = {
+                firstName: this.user.firstName,
+                lastName: this.user.lastName,
+                email: this.user.email,
+                image: this.user.image
+            }
 
             this.user = {
                 firstName: null,
                 lastName: null,
                 email: null,
-                image: null
+                image: {
+                    data: null
+                }
             }
 
-            this.firstName = null
-            this.lastName = null
-            this.email = null
+            console.log(user)
+
 
             // auth.signup ({ firstName, lastName, email, password })
             //     .then (res => {
