@@ -84,6 +84,8 @@ exports.getUserInfo = (req, res) => {
             ...req.userData
         }
 
+        // console.log(resUser.image)
+
         res.status(200).json({
             message: 'Successfully retrieved user info',
             userInfo: info
@@ -104,8 +106,6 @@ exports.updateUser = (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email
     })
-
-    console.log(req.file)
 
     newUser.image.data = fs.readFileSync(req.file.path)
     newUser.image.contentType = req.file.mimetype

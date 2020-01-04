@@ -7,7 +7,8 @@
 					<li>
 						<div class="user-view">
 							<a href="#user">
-								<img class="circle" src="http://lorempixel.com/output/nightlife-q-g-640-480-4.jpg">
+								<!-- <img class="circle" src="http://lorempixel.com/output/nightlife-q-g-640-480-4.jpg"> -->
+								<img class="circle" :src="user.image.data">
 							</a>
 							<a href="#name">
 								<span class="black-text name">
@@ -106,7 +107,10 @@ export default {
 			user: {
 				email: null,
 				firstName: null,
-				lastName: null
+				lastName: null,
+				image: {
+					data: null
+				}
 			}
 		}
 	},
@@ -115,8 +119,21 @@ export default {
 		auth.info()
 			.then(res => {
 				this.user = res.data.userInfo
-				console.log(res.data.userInfo.image.data.data)
+				
+				var base64Flag = 'data:image;base64,'
+				var imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
+
+				this.user.image.data = base64Flag + imageStr
 			})
+	}, 
+
+	methods: {
+		arrayBufferToBase64 (buffer) {
+			var binary = ''
+			var bytes = [].slice.call(new Uint8Array(buffer))
+			bytes.forEach((b) => binary += String.fromCharCode(b))
+			return window.btoa(binary)
+		}
 	}
 }
 </script>
