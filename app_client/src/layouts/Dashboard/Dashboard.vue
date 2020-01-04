@@ -7,7 +7,7 @@
 					<li>
 						<div class="user-view">
 							<a href="#user">
-								<img class="circle" :src="user.image.data">
+								<img class="circle" src="http://lorempixel.com/output/nightlife-q-g-640-480-4.jpg">
 							</a>
 							<a href="#name">
 								<span class="black-text name">
@@ -97,9 +97,6 @@
 
 <script>
 import auth from "../../helpers/auth.hlpr"
-import fs from "fs"
-
-const someFileContents = fs.readFileSync('');
 
 export default {
 	name: 'Dashboard',
@@ -109,10 +106,7 @@ export default {
 			user: {
 				email: null,
 				firstName: null,
-				lastName: null,
-				image: {
-					data: null
-				}
+				lastName: null
 			}
 		}
 	},
@@ -121,13 +115,7 @@ export default {
 		auth.info()
 			.then(res => {
 				this.user = res.data.userInfo
-
-				console.log(fs)
-
-				// fs.readFile(res.data.userInfo.image.data, function read(err, data) {
-				// 	if (err) throw err
-				// 	this.user.image = data
-				// })
+				// console.log(typeof res.data.userInfo.image.data)
 			})
 	}
 }
