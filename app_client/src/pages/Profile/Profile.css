@@ -24,9 +24,8 @@ label {
     border-radius: 100px !important;
 }
 
-.file-name {
-    box-shadow: none !important;
-    border-bottom: .5px solid #fff !important;
+.profile-img {
+    height: 100px;
 }
 
 .submit {

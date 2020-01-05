@@ -15,10 +15,10 @@
                 <div class="file-field input-field">
                     <div class="btn waves-light blue lighten-5 black-text file-button">
                         <span>Image</span>
-                        <input type="file">
+                        <input type="file" ref="fileInput" @change="upldoadFile">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate white-text file-name" type="text">
+                        <img class="circle profile-img" :src="imageLink">
                     </div>
                 </div>
 
@@ -47,17 +47,29 @@ export default {
 				image: {
 					data: null
 				}
-			}
+            },
+            imageLink: null
 		}
+    },
+
+    created () {
+		auth.info()
+			.then(res => {
+				this.user = res.data.userInfo
+				
+				const base64Flag = 'data:image;base64,'
+				const imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
+
+				this.imageLink = base64Flag + imageStr
+			})
     },
 
     methods: {
         submit (e) {
             const user = {
-                firstName: this.user.firstName,
-                lastName: this.user.lastName,
-                email: this.user.email,
-                image: this.user.image
+                firstName: this.user.firstName.toLowerCase(),
+                lastName: this.user.lastName.toLowerCase(),
+                email: this.user.email.toLowerCase()
             }
 
             this.user = {
@@ -68,18 +80,22 @@ export default {
                     data: null
                 }
             }
+        },
 
-            console.log(user)
-
-
-            // auth.signup ({ firstName, lastName, email, password })
-            //     .then (res => {
-            //         auth.login ({ email, password })
-            //             .then (res => localStorage.setItem('token', res.data.token))
-            //             .then (() => window.location.href = "/")
-            //             .catch (err => console.error(err))
-            //     })
-            //     .catch(err => console.error(err))
+		arrayBufferToBase64 (buffer) {
+			var binary = ''
+			var bytes = [].slice.call(new Uint8Array(buffer))
+			bytes.forEach((b) => binary += String.fromCharCode(b))
+			return window.btoa(binary)
+        },
+        
+        upldoadFile () {
+            const files = this.$refs.fileInput.files
+            if (files && files[0]) {
+                const reader = new FileReader
+                reader.onload = e => this.imageLink = e.target.result
+                reader.readAsDataURL(files[0])
+            }
         }
     }
 }
