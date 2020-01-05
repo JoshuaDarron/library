@@ -91,9 +91,9 @@ export default {
 
     methods: {
         submit (e) {
-            const firstName = this.firstName
-            const lastName = this.lastName
-            const email = this.email
+            const firstName = this.firstName.toLowerCase()
+            const lastName = this.lastName.toLowerCase()
+            const email = this.email.toLowerCase()
             const password = this.password
 
             this.firstName = null
@@ -105,7 +105,7 @@ export default {
                 .then (res => {
                     auth.login ({ email, password })
                         .then (res => localStorage.setItem('token', res.data.token))
-                        .then (() => window.location.href = "/")
+                        .then (() => window.location.href = "/profile")
                         .catch (err => console.error(err))
                 })
                 .catch(err => console.error(err))

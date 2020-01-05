@@ -4,6 +4,21 @@
 		<div class="row">
             <div class="col s12">
                 <form @submit.prevent="submit">
+
+                    <img v-if="imageLink" class="circle profile-img" :src="imageLink">
+					<img v-else class="circle profile-img" src="https://cdn4.iconfinder.com/data/icons/seo-web-blue-1/100/seo__web_blue_1_25-512.png">
+
+                    <div class="file-field input-field">
+                        <div class="btn waves-light blue lighten-5 black-text file-button">
+                            <span>File</span>
+                            <input class="" type="file" ref="fileInput" @change="upldoadFile">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+
+
                     <div class="input-field col s6">
                         <span class="profile-labels white-text" for="first-name">First Name</span>
                         <input class="validate profile-input" name="first-name" type="text" v-model="user.firstName" />
@@ -19,18 +34,11 @@
                         <input class="validate profile-input" name="email" type="email" v-model="user.email" />
                     </div>
 
-                    <div class="file-field input-field profile-file">
-                        <div class="btn waves-light blue lighten-5 black-text file-button">
-                            <span>Image</span>
-                            <input class="custom-file-input" type="file" ref="fileInput" @change="upldoadFile">
-                        </div>
-                        <img class="circle profile-img" :src="imageLink">
-                    </div>
-
                     <button type="submit" class="waves-effect waves-light btn blue darken-3 submit">
                         Save
                     </button>
                 </form>
+
             </div>
 		</div>
 	</div>
@@ -50,7 +58,9 @@ export default {
 				email: null,
 				firstName: null,
 				lastName: null,
-				image: null
+				image: {
+                    data: null
+                }
             },
             imageLink: null
 		}
@@ -59,13 +69,16 @@ export default {
     created () {
 		auth.info()
 			.then(res => {
-				this.user = res.data.userInfo
-				
-				const base64Flag = 'data:image;base64,'
-				const imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
+                this.formatAndStoreUser(res)
 
-				this.imageLink = base64Flag + imageStr
-			})
+                if (res.data.userInfo.image.data) {
+                    const base64Flag = 'data:image;base64,'
+                    const imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
+    
+                    this.imageLink = base64Flag + imageStr
+                }
+            })
+            .catch(err => console.error(err))
     },
 
     methods: {
@@ -77,15 +90,8 @@ export default {
             formData.set("email", this.user.email.toLowerCase())
             formData.append("image", this.user.image)
 
-            this.user = {
-                firstName: null,
-                lastName: null,
-                email: null,
-                image: null
-            }
-
             auth.update(formData)
-                .then(res => console.log(res))
+                .then(res => window.location.href = "/")
                 .catch(err => console.error(err))
         },
 
@@ -105,6 +111,15 @@ export default {
                 reader.onload = e => this.imageLink = e.target.result
                 reader.readAsDataURL(files[0])
             }
+        },
+
+        formatAndStoreUser (usr) {
+            const firstName = usr.data.userInfo.firstName
+			const lastName = usr.data.userInfo.lastName
+			usr.data.userInfo.firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1)
+            usr.data.userInfo.lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1)
+
+            this.user = usr.data.userInfo
         }
     }
 }

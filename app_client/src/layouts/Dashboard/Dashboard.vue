@@ -7,8 +7,8 @@
 					<li>
 						<div class="user-view">
 							<router-link to="/profile">
-								<!-- <img class="circle" src="http://lorempixel.com/output/nightlife-q-g-640-480-4.jpg"> -->
-								<img class="circle" :src="user.image.data">
+								<img v-if="imageLink" class="circle" :src="imageLink">
+								<img v-else class="circle" src="https://cdn4.iconfinder.com/data/icons/seo-web-blue-1/100/seo__web_blue_1_25-512.png">
 							</router-link>
 							<router-link to="/profile">
 								<span class="black-text name">
@@ -109,21 +109,25 @@ export default {
 				firstName: null,
 				lastName: null,
 				image: {
-					data: null
+					data: null,
+					contentType: null
 				}
-			}
+			},
+			imageLink: null
 		}
 	},
 
 	created () {
 		auth.info()
 			.then(res => {
-				this.user = res.data.userInfo
+				this.formatAndStoreUser(res)
 				
-				const base64Flag = 'data:image;base64,'
-				const imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
-
-				this.user.image.data = base64Flag + imageStr
+				if (res.data.userInfo.image.data) {
+					const base64Flag = 'data:image;base64,'
+					const imageStr = this.arrayBufferToBase64(res.data.userInfo.image.data.data)
+	
+					this.imageLink = base64Flag + imageStr
+				}
 			})
 	}, 
 
@@ -133,7 +137,16 @@ export default {
 			var bytes = [].slice.call(new Uint8Array(buffer))
 			bytes.forEach((b) => binary += String.fromCharCode(b))
 			return window.btoa(binary)
-		}
+		},
+
+        formatAndStoreUser (usr) {
+            const firstName = usr.data.userInfo.firstName
+			const lastName = usr.data.userInfo.lastName
+			usr.data.userInfo.firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1)
+            usr.data.userInfo.lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1)
+
+            this.user = usr.data.userInfo
+        }
 	}
 }
 </script>

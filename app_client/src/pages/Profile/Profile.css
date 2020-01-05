@@ -6,6 +6,10 @@ form {
     margin-top: 50px;
 }
 
+button {
+    display: block;
+}
+
 .profile-input {
     border: .5px solid #e0e0e0 !important;
     max-width: 400px;
@@ -28,16 +32,18 @@ label {
     font-size: 20px;
 }
 
-.profile-file {
-    padding-top: 200px !important;
-}
-
 .file-button {
     border-radius: 100px !important;
 }
 
 .profile-img {
     height: 100px;
+    display: block;
+}
+
+.file-path {
+    border-bottom: .5px solid #fff !important;
+    box-shadow: none !important;
 }
 
 .submit {
