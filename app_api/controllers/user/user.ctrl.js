@@ -98,7 +98,6 @@ exports.getUserInfo = (req, res) => {
 
 
 exports.updateUser = (req, res) => {
-
     const newUser = new User({
         _id: req.userData.userId,
         firstName: req.body.firstName,
@@ -106,8 +105,10 @@ exports.updateUser = (req, res) => {
         email: req.body.email
     })
 
-    newUser.image.data = fs.readFileSync(req.file.path)
-    newUser.image.contentType = req.file.mimetype
+    if (req.file) {
+        newUser.image.data = fs.readFileSync(req.file.path)
+        newUser.image.contentType = req.file.mimetype
+    }
 
     fs.readdir('./images', (err, files) => {
         if (err) throw err
@@ -119,7 +120,7 @@ exports.updateUser = (req, res) => {
         }
     })
 
-    User.updateOne(newUser)
+    User.findOneAndUpdate({ _id: req.userData.userId }, newUser)
     .then(resUser => {
         res.status(200).json({
             message: 'Successfully updated document',
