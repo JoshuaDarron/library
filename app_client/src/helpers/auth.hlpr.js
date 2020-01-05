@@ -21,7 +21,11 @@ export default {
         return axios.post(`${ROUTE}/signup`, user)
     },
 
-    info(user) {
+    info() {
         return axios.get(`${ROUTE}/`, headers)
+    },
+
+    update(user) {
+        return axios.put(`${ROUTE}/`, user, headers)
     }
 }
