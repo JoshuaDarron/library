@@ -75,7 +75,8 @@ module.exports = {
             .then(resBook => {
                 fetchedBooks = resBook
                 return db.Book.countDocuments({
-                    [bookType]: true
+                    [bookType]: true,
+                    user: req.userData.userId
                 })
             })
             .then(count => res.status(200).json({
