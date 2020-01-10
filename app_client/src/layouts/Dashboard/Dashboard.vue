@@ -129,6 +129,7 @@ export default {
 					this.imageLink = base64Flag + imageStr
 				}
 			})
+			.catch(err => window.location.href = "/login")
 	}, 
 
 	methods: {
