@@ -2,7 +2,7 @@
   "name": "library",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./bin/server.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,7 @@
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "google-books-search": "^0.3.1",
+    "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.3",
     "mongoose-unique-validator": "^2.0.3",

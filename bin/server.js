@@ -1,5 +1,4 @@
     const app = require("../app")
-    const debug = require("debug")("node-angular")
     const http = require("http")
 
 
@@ -40,14 +39,10 @@
     }
 
 
-    const onListening = () => {
-        console.log(`http://127.0.0.1:${port}`)
-        const bind = typeof port === "string" ? "pipe " + port : "port " + port
-        debug("Listening on " + bind)
-    }
+    const onListening = () => console.log(`http://127.0.0.1:${port}`)
 
 
-    const port = normalizePort(process.env.PORT || "3000")
+    const port = normalizePort(process.env.PORT || "3001")
     app.set("port", port)
 
 

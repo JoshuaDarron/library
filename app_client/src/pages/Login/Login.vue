@@ -81,6 +81,11 @@ export default {
         }
     },
 
+    created: function () {
+        if (localStorage.getItem("token")) 
+            window.location.href = '/'
+    },
+
     methods: {
         submit: function (e) {
             e.preventDefault()

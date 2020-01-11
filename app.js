@@ -7,10 +7,16 @@ const path = require('path')
 
 const app = express()
 
-const port = process.env.PORT || 3001
+// const port = process.env.PORT || 3001
 const MONGODB_URI = 'mongodb://localhost/googlebooks'
 
 const apiRoutes = require('./app_api/routes/index.routes')
+
+
+mongoose.Promise = Promise
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Successfully connected to Mongo database'))
+    .catch(err => console.error(err))
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -34,11 +40,5 @@ app.use('/api', apiRoutes)
 app.use('*', express.static(path.join(__dirname, 'public')))
 
 
-mongoose.Promise = Promise
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Successfully connected to Mongo database'))
-    .catch(err => console.error(err))
-
-
-app.listen(port, () => console.log(`http://localhost:${ port }`))
-// module.exports = app
+// app.listen(port, () => console.log(`http://localhost:${ port }`))
+module.exports = app

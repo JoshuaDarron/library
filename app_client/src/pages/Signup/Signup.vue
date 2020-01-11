@@ -89,6 +89,11 @@ export default {
         }
     },
 
+    created: function () {
+        if (localStorage.getItem("token")) 
+            window.location.href = '/'
+    },
+
     methods: {
         submit (e) {
             const firstName = this.firstName.toLowerCase()
