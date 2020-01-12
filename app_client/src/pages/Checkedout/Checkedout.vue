@@ -9,10 +9,6 @@
 		<div class="row">
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
-				<div v-for="book in books" :key="book._id">
-					<Card v-if="book.isBookmarked" :book="book" :color="color" v-on:card-remove="updateBooks"  :key="book._id" />
-				</div>
-
 				<ul v-if="maxCount > 5" class="pagination center-align">
 					<li class="waves-effect">
 						<a 
@@ -23,7 +19,7 @@
 					</li>
 
 					<li 
-						v-for="n in maxPage" :key="n" 
+						v-for="n in pageButtons" :key="n" 
 						v-on:click="changePage"
 						:class="page === n ? 'active blue' : 'waves-effect'" >
 						<a href="#">
@@ -39,6 +35,9 @@
 						</a>
 					</li>
 				</ul>
+				<div v-for="book in books" :key="book._id">
+					<Card v-if="book.isBookmarked" :book="book" :color="color" v-on:card-remove="updateBooks"  :key="book._id" />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -60,6 +59,7 @@ export default {
 			books: [],
 			maxCount: 1,
 			maxPage: 1,
+			pageButtons: [],
             page: 1,
             color: 'light-blue lighten-5'
 		}
@@ -75,8 +75,8 @@ export default {
 				.then(res => {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
-
-					this.books = res.data.books.reverse()
+					this.books = res.data.books
+					this.pageButtons = this.renderPageButtons()
 				})
 		},
 
@@ -85,6 +85,18 @@ export default {
 			~removeIndex && this.books.splice(removeIndex, 1)
 			if (!this.books.length) this.downPage()
 			else if (this.books.length < 5) this.getCheckedoutedBooks()
+		},
+
+		renderPageButtons () {
+			const buttons = []
+
+			if (this.page - 1) 
+				buttons.push(this.page - 1)
+			buttons.push(this.page)
+			if (this.page + 1 <= this.maxPage) 
+				buttons.push(this.page + 1)
+
+			return buttons
 		},
 
 		changePage: function (e) {
