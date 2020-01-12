@@ -89,13 +89,16 @@ export default {
 		},
 
 		renderPageButtons () {
+			const page = this.page
 			const buttons = []
 
-			if (this.page - 1) 
-				buttons.push(this.page - 1)
-			buttons.push(this.page)
-			if (this.page + 1 <= this.maxPage) 
-				buttons.push(this.page + 1)
+			if (page - 1) 
+				buttons.push(page - 1)
+			buttons.push(page)
+			if (page + 1 <= this.maxPage) 
+				buttons.push(page + 1)
+			if (page + 2 <= this.maxPage && buttons.length < 3) 
+				buttons.push(page + 2)
 
 			return buttons
 		},
