@@ -94,7 +94,6 @@ export default {
 				.catch(err => console.error(err))
 		},
 
-
 		onClick (e) {
 			e.preventDefault()
 
@@ -122,7 +121,7 @@ export default {
 					isSaved: false
 				})
 			}
-			this.$emit('card-remove', this.book.id || this.book._id);
+			this.$emit('card-remove', this.book.id || this.book._id)
 		}
 	}
 }
