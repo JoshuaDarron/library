@@ -9,10 +9,6 @@
 		<div class="row">
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
-				<div v-for="book in books" :key="book.id">
-					<Card :book="book" :color="color" v-on:card-remove="updateBooks" :key="book._id" />
-				</div>
-
 				<ul v-if="maxCount > 5" class="pagination center-align">
 					<li 
 						class="waves-effect"
@@ -23,7 +19,7 @@
 					</li>
 
 					<li 
-						v-for="n in maxPage" :key="n" 
+						v-for="n in pageButtons" :key="n" 
 						v-on:click="changePage"
 						:class="page === n ? 'active green' : 'waves-effect'" >
 						<a href="#">
@@ -39,6 +35,10 @@
 						</a>
 					</li>
 				</ul>
+
+				<div v-for="book in books" :key="book.id">
+					<Card :book="book" :color="color" v-on:card-remove="updateBooks" :key="book._id" />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -61,6 +61,7 @@ export default {
 			books: [],
 			maxCount: 1,
 			maxPage: 1,
+			pageButtons: [],
 			page: 1,
 			color: 'green lighten-5'
 		}
@@ -77,6 +78,7 @@ export default {
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
+					this.pageButtons = this.renderPageButtons()
 				})
 		},
 
@@ -87,8 +89,21 @@ export default {
 			else if (this.books.length < 5) this.getSaveddBooks()
 		},
 
+		renderPageButtons () {
+			const buttons = []
+
+			if (this.page - 1) 
+				buttons.push(this.page - 1)
+			buttons.push(this.page)
+			if (this.page + 1 <= this.maxPage) 
+				buttons.push(this.page + 1)
+
+			return buttons
+		},
+
 		changePage (e) {
 			e.preventDefault()
+			this.pageButtons = this.renderPageButtons()
 			window.scrollTo(0,0)
 			this.page = parseInt(e.target.text)
 
