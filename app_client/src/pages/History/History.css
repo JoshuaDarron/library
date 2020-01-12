@@ -14,3 +14,8 @@
 .noBook-msg {
     color: #b71c1c !important;
 }
+
+.prog-container {
+    width: 50% !important;
+    padding: 20px;
+}

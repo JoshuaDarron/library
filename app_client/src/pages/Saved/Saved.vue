@@ -7,7 +7,14 @@
 		<div class="divider"></div>
 
 		<div class="row">
-			<div v-if="!books.length" class="col s12 m6">
+
+			<div v-if="preloader" class="prog-container">
+				<div class="progress green">
+					<div class="indeterminate green lighten-3"></div>
+				</div>
+			</div>
+
+			<div v-if="!books.length && !preloader" class="col s12 m6">
 				<div class="card green lighten-5">
 					<div class="card-content">
 					<span class="card-title">
@@ -79,7 +86,8 @@ export default {
 			maxPage: 1,
 			pageButtons: [],
 			page: 1,
-			color: 'green lighten-5'
+			color: 'green lighten-5',
+			preloader: false
 		}
 	},
 
@@ -89,8 +97,10 @@ export default {
 
 	methods: {
 		getSaveddBooks () {
+			this.preloader = true
 			api.getTypesOfBooks(this.page, '/archived')
 				.then(res => {
+					this.preloader = false
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books

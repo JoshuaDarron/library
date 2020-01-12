@@ -7,6 +7,13 @@
 		<div class="divider"></div>
 
 		<div class="row">
+
+			<div v-if="preloader" class="prog-container">
+				<div class="progress blue">
+					<div class="indeterminate blue lighten-2"></div>
+				</div>
+			</div>
+
 			<div v-if="!books.length" class="col s12 m6">
 				<div class="card light-blue lighten-5">
 					<div class="card-content">
@@ -78,7 +85,8 @@ export default {
 			maxPage: 1,
 			pageButtons: [],
             page: 1,
-            color: 'light-blue lighten-5'
+			color: 'light-blue lighten-5',
+			preloader: false
 		}
 	},
 
@@ -88,8 +96,10 @@ export default {
 
 	methods: {
 		getCheckedoutedBooks: function () {
+			this.preloader = true
 			api.getTypesOfBooks(this.page, '/bookmarked')
 				.then(res => {
+					this.preloader = false
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
