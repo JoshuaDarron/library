@@ -7,6 +7,22 @@
 		<div class="divider"></div>
 
 		<div class="row">
+			<div v-if="!books.length" class="col s12 m6">
+				<div class="card green lighten-5">
+					<div class="card-content">
+					<span class="card-title">
+						No Saved Books
+					</span>
+					<p>
+						You currently have no books saved. If you would like to save a book, click the link below to search for books to save them for later.
+					</p>
+					</div>
+					<div class="card-action">
+						<a class="noBook-msg" href="/">Search</a>
+					</div>
+				</div>
+			</div>
+
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<ul v-if="maxCount > 5" class="pagination center-align">

@@ -7,6 +7,23 @@
 		<div class="divider"></div>
 
 		<div class="row">
+			<div v-if="!books.length" class="col s12 m6">
+				<div class="card red lighten-5">
+					<div class="card-content">
+					<span class="card-title">
+						No History
+					</span>
+					<p>
+						You currently have no reading history. Previously checkedout books will be shown here. Click the link below to see your saved or checkout books.
+					</p>
+					</div>
+					<div class="card-action">
+						<a class="noBook-msg" href="/saved">Saved</a>
+						<a class="noBook-msg" href="/checkedout">Checkedout</a>
+					</div>
+				</div>
+			</div>
+
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<ul v-if="maxCount > 5" class="pagination center-align">
@@ -115,7 +132,6 @@ export default {
 		upPage (e) {
 			e.preventDefault()
 			if (this.maxPage != this.page) {
-				window.scrollTo(0,0)
 				++this.page
 				this.getDeletedBooks()
 			}
@@ -124,7 +140,6 @@ export default {
 		downPage (e) {
 			if (e) e.preventDefault()
 			if (this.page != 1) {
-				window.scrollTo(0,0)
 				--this.page
 				this.getDeletedBooks()
 			}

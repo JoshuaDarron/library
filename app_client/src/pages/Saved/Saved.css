@@ -10,3 +10,7 @@
 .pagination {
     padding: 20px;
 }
+
+.noBook-msg {
+    color: #1b5e20 !important;
+}
