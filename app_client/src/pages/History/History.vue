@@ -7,30 +7,6 @@
 		<div class="divider"></div>
 
 		<div class="row">
-
-			<div v-if="preloader" class="prog-container">
-				<div class="progress red">
-					<div class="indeterminate red lighten-2"></div>
-				</div>
-			</div>
-
-			<div v-if="!books.length" class="col s12 m6">
-				<div class="card red lighten-5">
-					<div class="card-content">
-					<span class="card-title">
-						No History
-					</span>
-					<p>
-						You currently have no reading history. Previously checkedout books will be shown here. Click the link below to see your saved or checkout books.
-					</p>
-					</div>
-					<div class="card-action">
-						<a class="noBook-msg" href="/saved">Saved</a>
-						<a class="noBook-msg" href="/checkedout">Checkedout</a>
-					</div>
-				</div>
-			</div>
-
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
 				<ul v-if="maxCount > 5" class="pagination center-align">
@@ -59,6 +35,33 @@
 						</a>
 					</li>
 				</ul>
+
+
+			<div v-if="preloader" class="prog-container">
+				<div class="progress red">
+					<div class="indeterminate red lighten-2"></div>
+				</div>
+			</div>
+
+
+				<div v-if="!books.length" class="col s12 m6">
+					<div class="card red lighten-5">
+						<div class="card-content">
+						<span class="card-title">
+							No History
+						</span>
+						<p>
+							You currently have no reading history. Previously checkedout books will be shown here. Click the link below to see your saved or checkout books.
+						</p>
+						</div>
+						<div class="card-action">
+							<a class="noBook-msg" href="/saved">Saved</a>
+							<a class="noBook-msg" href="/checkedout">Checkedout</a>
+						</div>
+					</div>
+				</div>
+
+
 				<div v-for="book in books" :key="book.id">
 					<Card :book="book" :color="color" v-on:card-remove="updateBooks" :key="book._id" />
 				</div>
@@ -99,11 +102,11 @@ export default {
 			this.preloader = true
 			api.getTypesOfBooks(this.page, '/deleted')
 				.then(res => {
-					this.preloader = false
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
 					this.pageButtons = this.renderPageButtons()
+					this.preloader = false
 				})
 				.catch(err => console.error(err))
 		},
