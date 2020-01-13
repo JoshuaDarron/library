@@ -126,7 +126,7 @@ export default {
 			const page = this.page
 			const buttons = []
 
-			if (page + 1 > this.maxPage && page - 1 > 0) 
+			if (page + 1 > this.maxPage && page - 2 > 0) 
 				buttons.push(page - 2)
 			if (page - 1) 
 				buttons.push(page - 1)
