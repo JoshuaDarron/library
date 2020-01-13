@@ -141,7 +141,6 @@ export default {
 
 		changePage (e) {
 			e.preventDefault()
-			window.scrollTo(0, 0)
 			this.page = parseInt(e.target.text)
 			this.getDeletedBooks()
 		},

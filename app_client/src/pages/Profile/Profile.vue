@@ -18,7 +18,6 @@
                         </div>
                     </div>
 
-
                     <div class="input-field col s6">
                         <span class="profile-labels white-text" for="first-name">First Name</span>
                         <input class="validate profile-input" name="first-name" type="text" v-model="user.firstName" />
