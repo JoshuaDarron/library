@@ -7,31 +7,15 @@
 		<div class="divider"></div>
 
 		<div class="row">
-
-			<div v-if="preloader" class="prog-container">
-				<div class="progress green">
-					<div class="indeterminate green lighten-3"></div>
-				</div>
-			</div>
-
-			<div v-if="!books.length && !preloader" class="col s12 m6">
-				<div class="card green lighten-5">
-					<div class="card-content">
-					<span class="card-title">
-						No Saved Books
-					</span>
-					<p>
-						You currently have no books saved. If you would like to save a book, click the link below to search for books to save them for later.
-					</p>
-					</div>
-					<div class="card-action">
-						<a class="noBook-msg" href="/">Search</a>
-					</div>
-				</div>
-			</div>
-
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
+				<div v-if="preloader" class="prog-container">
+					<div class="progress green">
+						<div class="indeterminate green lighten-3"></div>
+					</div>
+				</div>
+
+
 				<ul v-if="maxCount > 5" class="pagination center-align">
 					<li 
 						class="waves-effect"
@@ -58,6 +42,26 @@
 						</a>
 					</li>
 				</ul>
+
+
+				<div v-if="!books.length && !preloader" class="col s12">
+					<div class="card green lighten-5">
+						<div class="card-content">
+						<span class="card-title">
+							No Saved Books
+						</span>
+						<p>
+							You currently have no books saved. If you would like to save a book, click the link below to search for books to save them for later.
+						</p>
+						</div>
+						<div class="card-action">
+							<router-link to="/">
+								<a class="noBook-msg" href="/">Search</a>
+							</router-link>
+						</div>
+					</div>
+				</div>
+
 
 				<div v-for="book in books" :key="book.id">
 					<Card :book="book" :color="color" v-on:card-remove="updateBooks" :key="book._id" />
@@ -100,11 +104,11 @@ export default {
 			this.preloader = true
 			api.getTypesOfBooks(this.page, '/archived')
 				.then(res => {
-					this.preloader = false
 					this.maxPage = Math.ceil(res.data.maxCount / 5)
 					this.maxCount = res.data.maxCount
 					this.books = res.data.books
 					this.pageButtons = this.renderPageButtons()
+					this.preloader = false
 				})
 		},
 
@@ -134,7 +138,6 @@ export default {
 
 		changePage (e) {
 			e.preventDefault()
-			window.scrollTo(0,0)
 			this.page = parseInt(e.target.text)
 
 			this.getSaveddBooks()
@@ -143,7 +146,6 @@ export default {
 		upPage (e) {
 			e.preventDefault()
 			if (this.maxPage != this.page) {
-				window.scrollTo(0,0)
 				++this.page
 				this.getSaveddBooks()
 			}
@@ -152,7 +154,6 @@ export default {
 		downPage (e) {
 			if (e) e.preventDefault()
 			if (this.page != 1) {
-				window.scrollTo(0,0)
 				--this.page
 				this.getSaveddBooks()
 			}

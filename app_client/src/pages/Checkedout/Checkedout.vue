@@ -7,32 +7,15 @@
 		<div class="divider"></div>
 
 		<div class="row">
-
-			<div v-if="preloader" class="prog-container">
-				<div class="progress blue">
-					<div class="indeterminate blue lighten-2"></div>
-				</div>
-			</div>
-
-			<div v-if="!books.length" class="col s12 m6">
-				<div class="card light-blue lighten-5">
-					<div class="card-content">
-					<span class="card-title">
-						No Checkedout Books
-					</span>
-					<p>
-						You currently have no books checkedout. If you would like to check a book out, click the links below to search for books, or visit your saved books.
-					</p>
-					</div>
-					<div class="card-action">
-						<a class="noBook-msg" href="/">Search</a>
-						<a class="noBook-msg" href="/saved">Saved</a>
-					</div>
-				</div>
-			</div>
-
 			<!-- LEFT COL -->
-			<div v-if="books.length" class="col m12 xl7">
+			<div class="col m12 xl7">
+				<div v-if="preloader" class="prog-container">
+					<div class="progress blue">
+						<div class="indeterminate blue lighten-2"></div>
+					</div>
+				</div>
+
+
 				<ul v-if="maxCount > 5" class="pagination center-align">
 					<li class="waves-effect">
 						<a 
@@ -59,6 +42,30 @@
 						</a>
 					</li>
 				</ul>
+
+
+				<div v-if="!books.length && !preloader" class="col s12">
+					<div class="card light-blue lighten-5">
+						<div class="card-content">
+						<span class="card-title">
+							No Checkedout Books
+						</span>
+						<p>
+							You currently have no books checkedout. If you would like to check a book out, click the links below to search for books, or visit your saved books.
+						</p>
+						</div>
+						<div class="card-action">
+							<router-link to="/">
+								<a class="noBook-msg" href="#">Search</a>
+							</router-link>
+							<router-link to="/saved">
+								<a class="noBook-msg" href="#">Saved</a>
+							</router-link>
+						</div>
+					</div>
+				</div>
+
+
 				<div v-for="book in books" :key="book._id">
 					<Card v-if="book.isBookmarked" :book="book" :color="color" v-on:card-remove="updateBooks"  :key="book._id" />
 				</div>

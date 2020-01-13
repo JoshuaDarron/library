@@ -9,6 +9,13 @@
 		<div class="row">
 			<!-- LEFT COL -->
 			<div class="col m12 xl7">
+				<div v-if="preloader" class="prog-container">
+					<div class="progress red">
+						<div class="indeterminate red lighten-2"></div>
+					</div>
+				</div>
+
+
 				<ul v-if="maxCount > 5" class="pagination center-align">
 					<li class="waves-effect">
 						<a
@@ -37,14 +44,7 @@
 				</ul>
 
 
-			<div v-if="preloader" class="prog-container">
-				<div class="progress red">
-					<div class="indeterminate red lighten-2"></div>
-				</div>
-			</div>
-
-
-				<div v-if="!books.length" class="col s12 m6">
+				<div v-if="!books.length && !preloader" class="col s12">
 					<div class="card red lighten-5">
 						<div class="card-content">
 						<span class="card-title">
@@ -55,8 +55,12 @@
 						</p>
 						</div>
 						<div class="card-action">
-							<a class="noBook-msg" href="/saved">Saved</a>
-							<a class="noBook-msg" href="/checkedout">Checkedout</a>
+							<router-link to="/saved">
+								<a class="noBook-msg" href="#">Saved</a>
+							</router-link>
+							<router-link to="/checkedout">
+								<a class="noBook-msg" href="#">Checkedout</a>
+							</router-link>
 						</div>
 					</div>
 				</div>
