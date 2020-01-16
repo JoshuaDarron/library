@@ -129,7 +129,10 @@ export default {
 					this.imageLink = base64Flag + imageStr
 				}
 			})
-			.catch(err => window.location.href = "/login")
+			.catch(err => {
+				localStorage.removeItem("token")
+				window.location.href = "/login"
+			})
 	}, 
 
 	methods: {
