@@ -8,7 +8,7 @@ const path = require('path')
 const app = express()
 
 // const port = process.env.PORT || 3001
-const MONGODB_URI = 'mongodb://localhost/googlebooks'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/googlebooks'
 
 const apiRoutes = require('./app_api/routes/index.routes')
 
