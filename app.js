@@ -36,6 +36,10 @@ app.use((req, res, next) => {
     next()
 })
 
+if (process.env.DEVELOPMENT) {
+    app.use('/', express.static('app_client/public'))
+}
+app.use('/', express.static('app_client/dist'))
 
 app.use('/api', apiRoutes)
 app.use('*', express.static(path.join(__dirname, 'public')))
