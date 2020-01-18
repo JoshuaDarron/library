@@ -37,6 +37,13 @@ app.use((req, res, next) => {
 })
 
 app.use('/api', apiRoutes)
+
+if (false) {
+    app.use('/', express.static('app_client/public'))
+}
+app.use('/', express.static('app_client/build'))
+
+
 app.use('*', express.static(path.join(__dirname, 'public')))
 
 
