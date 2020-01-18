@@ -36,14 +36,13 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/api', apiRoutes)
 
 if (false) {
     app.use('/', express.static('app_client/public'))
 }
 app.use('/', express.static('app_client/build'))
 
-
+app.use('/api', apiRoutes)
 app.use('*', express.static(path.join(__dirname, 'public')))
 
 
