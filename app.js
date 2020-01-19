@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const mongoose = require('mongoose')
 const path = require('path')
+const serveStatic = require('serve-static')
 
 const app = express()
 
@@ -36,14 +37,12 @@ app.use((req, res, next) => {
     next()
 })
 
-if (process.env.DEVELOPMENT) {
-    app.use('/', express.static('app_client/public'))
-}
-app.use('/', express.static('app_client/dist'))
+
+app.use('/', serveStatic(path.join(__dirname, 'app_client/dist')))
+app.get(/.*/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'app_client/dist/index.html'))
+})
 
 app.use('/api', apiRoutes)
-app.use('*', express.static(path.join(__dirname, 'public')))
 
-
-// app.listen(port, () => console.log(`http://localhost:${ port }`))
 module.exports = app
