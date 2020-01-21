@@ -8,7 +8,6 @@ const serveStatic = require('serve-static')
 
 const app = express()
 
-// const port = process.env.PORT || 3001
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/googlebooks'
 
 const apiRoutes = require('./app_api/routes/index.routes')
@@ -37,12 +36,12 @@ app.use((req, res, next) => {
     next()
 })
 
-
+app.use('/api', apiRoutes)
 app.use('/', serveStatic(path.join(__dirname, 'app_client/dist')))
+
 app.get(/.*/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'app_client/dist/index.html'))
+    res.sendFile(path.join(__dirname, 'app_client/dist/'))
 })
 
-app.use('/api', apiRoutes)
 
 module.exports = app
